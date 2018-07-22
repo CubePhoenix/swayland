@@ -1,0 +1,41 @@
+# Sway Dependencies
+meson
+@wlroots
+wayland
+wayland-protocols
+xorg-server-xwayland
+libinput
+libcap
+libdrm
+pcre
+json-c
+pango
+cairo
+gdk-pixbuf2
+pam
+dbus
+imagemagick
+ffmpeg
+@scdoc
+egl-wayland
+mesa
+libxkbcommon
+udev
+pixman
+systemd
+sway
+
+# Other
+python
+python-pip
+@python-neovim
+python-setuptools
+git
+yaourt
+go
+ninja
+
+# Tools
+termite
+ranger
+feh

@@ -1,0 +1,1320 @@
+Base Directory: /home/phoenix/rice
+Installing Packages...
+Base Directory: /home/phoenix/rice
+Installing meson
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) meson-0.47.0-1
+
+Total Installed Size:  3.35 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling meson...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Unconventional install, calling install script.
+Base Directory: /home/phoenix/rice
+The Meson build system
+Version: 0.47.0
+Source dir: /home/phoenix/rice/packages/scripts/workdir
+Build dir: /home/phoenix/rice/packages/scripts/workdir/build
+Build type: native build
+Project name: wlroots
+Project version: 0.0.1
+Native C compiler: cc (gcc 8.1.1 "cc (GCC) 8.1.1 20180531")
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Found pkg-config: /usr/bin/pkg-config (1.5.1)
+Native dependency wayland-server found: YES 1.15.0
+Native dependency wayland-client found: YES 1.15.0
+Native dependency wayland-egl found: YES 18.1.0
+Native dependency wayland-protocols found: YES 1.14
+Native dependency egl found: YES 18.1.3
+Native dependency glesv2 found: YES 18.1.3
+Native dependency libdrm found: YES 2.4.92
+Native dependency gbm found: YES 18.1.3
+Native dependency libinput found: YES 1.11.2
+Native dependency xkbcommon found: YES 0.8.0
+Native dependency libudev found: YES 239
+Native dependency pixman-1 found: YES 0.34.0
+Native dependency libcap found: YES 2.25
+Native dependency libsystemd found: YES 239
+Dependency libelogind found: NO
+Library m found: YES
+Native dependency xcb found: YES 1.13
+Native dependency xcb-composite found: YES 1.13
+Native dependency xcb-xfixes found: YES 1.13
+Native dependency xcb-image found: YES 0.4.0
+Native dependency xcb-render found: YES 1.13
+Native dependency x11-xcb found: YES 1.6.5
+Native dependency xcb-icccm found: YES 0.4.1
+Native dependency xcb-xkb found: YES 1.13
+Dependency xcb-errors found: NO
+Configuring config.h using configuration
+Configuring version.h using configuration
+Program wayland-scanner found: YES (/usr/bin/wayland-scanner)
+Program ../glgen.sh found: YES (/home/phoenix/rice/packages/scripts/workdir/render/../glgen.sh)
+Message: 
+----------------
+wlroots 0.0.1
+
+      libcap: true
+     systemd: true
+     elogind: false
+    xwayland: true
+ x11_backend: true
+   xcb-icccm: true
+  xcb-errors: false
+----------------
+
+Dependency threads found: YES
+Native dependency wayland-cursor found: YES 1.15.0
+Native dependency libpng found: YES 1.6.34
+Native dependency libavutil found: YES 56.14.100
+Native dependency libavcodec found: YES 58.18.100
+Native dependency libavformat found: YES 58.12.100
+Has header "libavutil/hwcontext_drm.h": YES
+Program git found: YES (/usr/bin/git)
+Program etags found: NO
+Program ctags found: NO
+Build targets in project: 24
+Option werror is: True [default: true]
+Found ninja-1.8.2 at /usr/bin/ninja
+ninja: Entering directory `build'
+[1/454] Compiling C object 'xwayland/xwayland@@wlr_xwayland@sta/selection_dnd.c.o'.
+[2/454] Compiling C object 'xwayland/xwayland@@wlr_xwayland@sta/selection_incoming.c.o'.
+[3/454] Compiling C object 'xwayland/xwayland@@wlr_xwayland@sta/selection_selection.c.o'.
+[4/454] Compiling C object 'xwayland/xwayland@@wlr_xwayland@sta/selection_outgoing.c.o'.
+[5/454] Compiling C object 'xwayland/xwayland@@wlr_xwayland@sta/sockets.c.o'.
+[6/454] Compiling C object 'xwayland/xwayland@@wlr_xwayland@sta/xwayland.c.o'.
+[7/454] Generating 'protocol/protocol@@wl_protos@sta/xdg-shell-protocol.c'.
+[8/454] Generating 'protocol/protocol@@wl_protos@sta/idle-inhibit-unstable-v1-protocol.c'.
+[9/454] Generating 'protocol/protocol@@wl_protos@sta/linux-dmabuf-unstable-v1-protocol.c'.
+[10/454] Generating 'protocol/protocol@@wl_protos@sta/xdg-shell-unstable-v6-protocol.c'.
+[11/454] Generating 'protocol/protocol@@wl_protos@sta/xdg-output-unstable-v1-protocol.c'.
+[12/454] Generating 'protocol/protocol@@wl_protos@sta/gamma-control-protocol.c'.
+[13/454] Generating 'protocol/protocol@@wl_protos@sta/gtk-primary-selection-protocol.c'.
+[14/454] Generating 'protocol/protocol@@wl_protos@sta/idle-protocol.c'.
+[15/454] Generating 'protocol/protocol@@wl_protos@sta/screenshooter-protocol.c'.
+[16/454] Compiling C object 'xwayland/xwayland@@wlr_xwayland@sta/xwm.c.o'.
+[17/454] Generating 'protocol/protocol@@wl_protos@sta/server-decoration-protocol.c'.
+[18/454] Generating 'protocol/protocol@@wl_protos@sta/virtual-keyboard-unstable-v1-protocol.c'.
+[19/454] Linking static target xwayland/libwlr_xwayland.a.
+[20/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-input-inhibitor-unstable-v1-protocol.c'.
+[21/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-export-dmabuf-unstable-v1-protocol.c'.
+[22/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-screencopy-unstable-v1-protocol.c'.
+[23/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-layer-shell-unstable-v1-protocol.c'.
+[24/454] Generating 'protocol/protocol@@wl_protos@sta/idle-inhibit-unstable-v1-protocol.h'.
+[25/454] Generating 'protocol/protocol@@wl_protos@sta/xdg-shell-protocol.h'.
+[26/454] Generating 'protocol/protocol@@wl_protos@sta/linux-dmabuf-unstable-v1-protocol.h'.
+[27/454] Generating 'protocol/protocol@@wl_protos@sta/xdg-shell-unstable-v6-protocol.h'.
+[28/454] Generating 'protocol/protocol@@wl_protos@sta/xdg-output-unstable-v1-protocol.h'.
+[29/454] Generating 'protocol/protocol@@wl_protos@sta/gamma-control-protocol.h'.
+[30/454] Generating 'protocol/protocol@@wl_protos@sta/gtk-primary-selection-protocol.h'.
+[31/454] Generating 'protocol/protocol@@wl_protos@sta/idle-protocol.h'.
+[32/454] Generating 'protocol/protocol@@wl_protos@sta/server-decoration-protocol.h'.
+[33/454] Generating 'protocol/protocol@@wl_protos@sta/screenshooter-protocol.h'.
+[34/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[35/454] Generating 'protocol/protocol@@wl_protos@sta/virtual-keyboard-unstable-v1-protocol.h'.
+[36/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-layer-shell-unstable-v1-protocol.h'.
+[37/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[38/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-screencopy-unstable-v1-protocol.h'.
+[39/454] Generating 'protocol/protocol@@wl_protos@sta/xdg-shell-unstable-v6-client-protocol.h'.
+[40/454] Generating 'protocol/protocol@@wl_protos@sta/idle-inhibit-unstable-v1-client-protocol.h'.
+[41/454] Generating 'protocol/protocol@@wl_protos@sta/xdg-shell-client-protocol.h'.
+[42/454] Generating 'protocol/protocol@@wl_protos@sta/idle-client-protocol.h'.
+[43/454] Generating 'protocol/protocol@@wl_protos@sta/screenshooter-client-protocol.h'.
+[44/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[45/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[46/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[47/454] Generating 'protocol/protocol@@wl_protos@sta/wlr-screencopy-unstable-v1-client-protocol.h'.
+[48/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_xdg-shell-protocol.c.o'.
+[49/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_idle-inhibit-unstable-v1-protocol.c.o'.
+[50/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_linux-dmabuf-unstable-v1-protocol.c.o'.
+[51/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_xdg-shell-unstable-v6-protocol.c.o'.
+[52/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_xdg-output-unstable-v1-protocol.c.o'.
+[53/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_gamma-control-protocol.c.o'.
+[54/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_gtk-primary-selection-protocol.c.o'.
+[55/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_idle-protocol.c.o'.
+[56/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_screenshooter-protocol.c.o'.
+[57/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_server-decoration-protocol.c.o'.
+[58/454] Generating glapi with a custom command.
+[59/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_virtual-keyboard-unstable-v1-protocol.c.o'.
+[60/454] Compiling C object 'render/render@@wlr_render@sta/dmabuf.c.o'.
+[61/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_wlr-export-dmabuf-unstable-v1-protocol.c.o'.
+[62/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_wlr-input-inhibitor-unstable-v1-protocol.c.o'.
+[63/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_wlr-layer-shell-unstable-v1-protocol.c.o'.
+[64/454] Compiling C object 'protocol/protocol@@wl_protos@sta/meson-generated_wlr-screencopy-unstable-v1-protocol.c.o'.
+[65/454] Linking static target protocol/libwl_protos.a.
+[66/454] Compiling C object 'render/render@@wlr_render@sta/meson-generated_.._glapi.c.o'.
+[67/454] Compiling C object 'render/render@@wlr_render@sta/egl.c.o'.
+[68/454] Compiling C object 'render/render@@wlr_render@sta/gles2_pixel_format.c.o'.
+[69/454] Compiling C object 'render/render@@wlr_render@sta/gles2_shaders.c.o'.
+[70/454] Compiling C object 'render/render@@wlr_render@sta/gles2_renderer.c.o'.
+[71/454] Compiling C object 'render/render@@wlr_render@sta/gles2_texture.c.o'.
+[72/454] Compiling C object 'render/render@@wlr_render@sta/gles2_util.c.o'.
+[73/454] Compiling C object 'render/render@@wlr_render@sta/wlr_texture.c.o'.
+[74/454] Compiling C object 'render/render@@wlr_render@sta/wlr_renderer.c.o'.
+[75/454] Generating 'backend/backend@@wlr_backend@sta/xdg-shell-protocol.h'.
+[76/454] Generating 'backend/backend@@wlr_backend@sta/idle-inhibit-unstable-v1-protocol.h'.
+[77/454] Linking static target render/libwlr_render.a.
+[78/454] Generating 'backend/backend@@wlr_backend@sta/xdg-shell-unstable-v6-protocol.h'.
+[79/454] Generating 'backend/backend@@wlr_backend@sta/linux-dmabuf-unstable-v1-protocol.h'.
+[80/454] Generating 'backend/backend@@wlr_backend@sta/gamma-control-protocol.h'.
+[81/454] Generating 'backend/backend@@wlr_backend@sta/xdg-output-unstable-v1-protocol.h'.
+[82/454] Generating 'backend/backend@@wlr_backend@sta/idle-protocol.h'.
+[83/454] Generating 'backend/backend@@wlr_backend@sta/gtk-primary-selection-protocol.h'.
+[84/454] Generating 'backend/backend@@wlr_backend@sta/screenshooter-protocol.h'.
+[85/454] Generating 'backend/backend@@wlr_backend@sta/server-decoration-protocol.h'.
+[86/454] Generating 'backend/backend@@wlr_backend@sta/virtual-keyboard-unstable-v1-protocol.h'.
+[87/454] Generating 'backend/backend@@wlr_backend@sta/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[88/454] Generating 'backend/backend@@wlr_backend@sta/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[89/454] Generating 'backend/backend@@wlr_backend@sta/wlr-screencopy-unstable-v1-protocol.h'.
+[90/454] Generating 'backend/backend@@wlr_backend@sta/wlr-layer-shell-unstable-v1-protocol.h'.
+[91/454] Generating 'backend/backend@@wlr_backend@sta/xdg-shell-client-protocol.h'.
+[92/454] Generating 'backend/backend@@wlr_backend@sta/xdg-shell-unstable-v6-client-protocol.h'.
+[93/454] Generating 'backend/backend@@wlr_backend@sta/idle-inhibit-unstable-v1-client-protocol.h'.
+[94/454] Generating 'backend/backend@@wlr_backend@sta/idle-client-protocol.h'.
+[95/454] Generating 'backend/backend@@wlr_backend@sta/screenshooter-client-protocol.h'.
+[96/454] Generating 'backend/backend@@wlr_backend@sta/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[97/454] Generating 'backend/backend@@wlr_backend@sta/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[98/454] Generating 'backend/backend@@wlr_backend@sta/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[99/454] Generating 'backend/backend@@wlr_backend@sta/wlr-screencopy-unstable-v1-client-protocol.h'.
+[100/454] Generating 'types/types@@wlr_types@sta/xdg-shell-protocol.h'.
+[101/454] Compiling C object 'backend/backend@@wlr_backend@sta/backend.c.o'.
+[102/454] Compiling C object 'backend/backend@@wlr_backend@sta/drm_atomic.c.o'.
+[103/454] Compiling C object 'backend/backend@@wlr_backend@sta/drm_backend.c.o'.
+[104/454] Compiling C object 'backend/backend@@wlr_backend@sta/drm_drm.c.o'.
+[105/454] Compiling C object 'backend/backend@@wlr_backend@sta/drm_legacy.c.o'.
+[106/454] Compiling C object 'backend/backend@@wlr_backend@sta/drm_properties.c.o'.
+[107/454] Compiling C object 'backend/backend@@wlr_backend@sta/headless_input_device.c.o'.
+[108/454] Compiling C object 'backend/backend@@wlr_backend@sta/headless_backend.c.o'.
+[109/454] Compiling C object 'backend/backend@@wlr_backend@sta/drm_renderer.c.o'.
+[110/454] Compiling C object 'backend/backend@@wlr_backend@sta/drm_util.c.o'.
+[111/454] Compiling C object 'backend/backend@@wlr_backend@sta/libinput_events.c.o'.
+[112/454] Compiling C object 'backend/backend@@wlr_backend@sta/headless_output.c.o'.
+[113/454] Compiling C object 'backend/backend@@wlr_backend@sta/libinput_backend.c.o'.
+[114/454] Compiling C object 'backend/backend@@wlr_backend@sta/libinput_keyboard.c.o'.
+[115/454] Compiling C object 'backend/backend@@wlr_backend@sta/libinput_pointer.c.o'.
+[116/454] Compiling C object 'backend/backend@@wlr_backend@sta/libinput_tablet_pad.c.o'.
+[117/454] Compiling C object 'backend/backend@@wlr_backend@sta/libinput_tablet_tool.c.o'.
+[118/454] Compiling C object 'backend/backend@@wlr_backend@sta/session_direct-ipc.c.o'.
+[119/454] Compiling C object 'backend/backend@@wlr_backend@sta/libinput_touch.c.o'.
+[120/454] Compiling C object 'backend/backend@@wlr_backend@sta/multi_backend.c.o'.
+[121/454] Compiling C object 'backend/backend@@wlr_backend@sta/session_session.c.o'.
+[122/454] Compiling C object 'backend/backend@@wlr_backend@sta/wayland_backend.c.o'.
+[123/454] Compiling C object 'backend/backend@@wlr_backend@sta/wayland_output.c.o'.
+[124/454] Compiling C object 'backend/backend@@wlr_backend@sta/wayland_wl_seat.c.o'.
+[125/454] Compiling C object 'backend/backend@@wlr_backend@sta/wayland_registry.c.o'.
+[126/454] Compiling C object 'backend/backend@@wlr_backend@sta/session_direct.c.o'.
+[127/454] Compiling C object 'backend/backend@@wlr_backend@sta/session_logind.c.o'.
+[128/454] Compiling C object 'backend/backend@@wlr_backend@sta/x11_backend.c.o'.
+[129/454] Compiling C object 'backend/backend@@wlr_backend@sta/x11_input_device.c.o'.
+[130/454] Generating 'types/types@@wlr_types@sta/idle-inhibit-unstable-v1-protocol.h'.
+[131/454] Generating 'types/types@@wlr_types@sta/linux-dmabuf-unstable-v1-protocol.h'.
+[132/454] Generating 'types/types@@wlr_types@sta/xdg-shell-unstable-v6-protocol.h'.
+[133/454] Generating 'types/types@@wlr_types@sta/xdg-output-unstable-v1-protocol.h'.
+[134/454] Generating 'types/types@@wlr_types@sta/gamma-control-protocol.h'.
+[135/454] Generating 'types/types@@wlr_types@sta/gtk-primary-selection-protocol.h'.
+[136/454] Generating 'types/types@@wlr_types@sta/idle-protocol.h'.
+[137/454] Generating 'types/types@@wlr_types@sta/screenshooter-protocol.h'.
+[138/454] Generating 'types/types@@wlr_types@sta/server-decoration-protocol.h'.
+[139/454] Generating 'types/types@@wlr_types@sta/virtual-keyboard-unstable-v1-protocol.h'.
+[140/454] Generating 'types/types@@wlr_types@sta/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[141/454] Generating 'types/types@@wlr_types@sta/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[142/454] Generating 'types/types@@wlr_types@sta/wlr-layer-shell-unstable-v1-protocol.h'.
+[143/454] Generating 'types/types@@wlr_types@sta/wlr-screencopy-unstable-v1-protocol.h'.
+[144/454] Generating 'types/types@@wlr_types@sta/xdg-shell-unstable-v6-client-protocol.h'.
+[145/454] Compiling C object 'backend/backend@@wlr_backend@sta/x11_output.c.o'.
+[146/454] Generating 'types/types@@wlr_types@sta/xdg-shell-client-protocol.h'.
+[147/454] Generating 'types/types@@wlr_types@sta/idle-inhibit-unstable-v1-client-protocol.h'.
+[148/454] Linking static target backend/libwlr_backend.a.
+[149/454] Generating 'types/types@@wlr_types@sta/screenshooter-client-protocol.h'.
+[150/454] Generating 'types/types@@wlr_types@sta/idle-client-protocol.h'.
+[151/454] Generating 'types/types@@wlr_types@sta/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[152/454] Generating 'types/types@@wlr_types@sta/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[153/454] Generating 'types/types@@wlr_types@sta/wlr-screencopy-unstable-v1-client-protocol.h'.
+[154/454] Generating 'types/types@@wlr_types@sta/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[155/454] Compiling C object 'util/util@@wlr_util@sta/log.c.o'.
+[156/454] Compiling C object 'examples/examples@@simple@exe/simple.c.o'.
+[157/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_wlr_xdg_shell.c.o'.
+[158/454] Compiling C object 'types/types@@wlr_types@sta/data_device_wlr_data_device.c.o'.
+[159/454] Compiling C object 'types/types@@wlr_types@sta/data_device_wlr_data_source.c.o'.
+[160/454] Compiling C object 'types/types@@wlr_types@sta/data_device_wlr_data_offer.c.o'.
+[161/454] Compiling C object 'types/types@@wlr_types@sta/data_device_wlr_drag.c.o'.
+[162/454] Compiling C object 'types/types@@wlr_types@sta/seat_wlr_seat_pointer.c.o'.
+[163/454] Compiling C object 'types/types@@wlr_types@sta/seat_wlr_seat_keyboard.c.o'.
+[164/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_wlr_xdg_positioner.c.o'.
+[165/454] Compiling C object 'types/types@@wlr_types@sta/seat_wlr_seat.c.o'.
+[166/454] Compiling C object 'types/types@@wlr_types@sta/seat_wlr_seat_touch.c.o'.
+[167/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_wlr_xdg_popup.c.o'.
+[168/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_wlr_xdg_surface.c.o'.
+[169/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_wlr_xdg_toplevel.c.o'.
+[170/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_v6_wlr_xdg_popup_v6.c.o'.
+[171/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_v6_wlr_xdg_positioner_v6.c.o'.
+[172/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_v6_wlr_xdg_shell_v6.c.o'.
+[173/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_v6_wlr_xdg_surface_v6.c.o'.
+[174/454] Compiling C object 'types/types@@wlr_types@sta/wlr_buffer.c.o'.
+[175/454] Compiling C object 'types/types@@wlr_types@sta/xdg_shell_v6_wlr_xdg_toplevel_v6.c.o'.
+[176/454] Compiling C object 'types/types@@wlr_types@sta/wlr_box.c.o'.
+[177/454] Compiling C object 'types/types@@wlr_types@sta/wlr_cursor.c.o'.
+[178/454] Compiling C object 'types/types@@wlr_types@sta/wlr_compositor.c.o'.
+[179/454] Compiling C object 'types/types@@wlr_types@sta/wlr_gamma_control.c.o'.
+[180/454] Compiling C object 'types/types@@wlr_types@sta/wlr_export_dmabuf_v1.c.o'.
+[181/454] Compiling C object 'types/types@@wlr_types@sta/wlr_idle_inhibit_v1.c.o'.
+[182/454] Compiling C object 'types/types@@wlr_types@sta/wlr_idle.c.o'.
+[183/454] Compiling C object 'types/types@@wlr_types@sta/wlr_input_device.c.o'.
+[184/454] Compiling C object 'types/types@@wlr_types@sta/wlr_input_inhibitor.c.o'.
+[185/454] Compiling C object 'types/types@@wlr_types@sta/wlr_keyboard.c.o'.
+[186/454] Compiling C object 'types/types@@wlr_types@sta/wlr_layer_shell.c.o'.
+[187/454] Compiling C object 'types/types@@wlr_types@sta/wlr_list.c.o'.
+[188/454] Compiling C object 'types/types@@wlr_types@sta/wlr_linux_dmabuf.c.o'.
+[189/454] Compiling C object 'types/types@@wlr_types@sta/wlr_matrix.c.o'.
+[190/454] Compiling C object 'types/types@@wlr_types@sta/wlr_output_layout.c.o'.
+[191/454] Compiling C object 'examples/examples@@pointer@exe/pointer.c.o'.
+[192/454] Compiling C object 'examples/examples@@touch@exe/touch.c.o'.
+[193/454] Compiling C object 'types/types@@wlr_types@sta/wlr_output_damage.c.o'.
+[194/454] Compiling C object 'types/types@@wlr_types@sta/wlr_pointer.c.o'.
+[195/454] Compiling C object 'types/types@@wlr_types@sta/wlr_output.c.o'.
+[196/454] Compiling C object 'types/types@@wlr_types@sta/wlr_primary_selection.c.o'.
+[197/454] Compiling C object 'types/types@@wlr_types@sta/wlr_region.c.o'.
+[198/454] Compiling C object 'types/types@@wlr_types@sta/wlr_screenshooter.c.o'.
+[199/454] Compiling C object 'types/types@@wlr_types@sta/wlr_server_decoration.c.o'.
+[200/454] Compiling C object 'types/types@@wlr_types@sta/wlr_tablet_pad.c.o'.
+[201/454] Compiling C object 'types/types@@wlr_types@sta/wlr_tablet_tool.c.o'.
+[202/454] Compiling C object 'types/types@@wlr_types@sta/wlr_surface.c.o'.
+[203/454] Compiling C object 'types/types@@wlr_types@sta/wlr_touch.c.o'.
+[204/454] Compiling C object 'types/types@@wlr_types@sta/wlr_virtual_keyboard_v1.c.o'.
+[205/454] Compiling C object 'types/types@@wlr_types@sta/wlr_wl_shell.c.o'.
+[206/454] Compiling C object 'types/types@@wlr_types@sta/wlr_xcursor_manager.c.o'.
+[207/454] Compiling C object 'types/types@@wlr_types@sta/wlr_xdg_output.c.o'.
+[208/454] Compiling C object 'types/types@@wlr_types@sta/wlr_screencopy_v1.c.o'.
+[209/454] Compiling C object 'util/util@@wlr_util@sta/os-compatibility.c.o'.
+[210/454] Linking static target types/libwlr_types.a.
+[211/454] Compiling C object 'util/util@@wlr_util@sta/signal.c.o'.
+[212/454] Compiling C object 'util/util@@wlr_util@sta/region.c.o'.
+[213/454] Linking static target util/libwlr_util.a.
+[214/454] Compiling C object 'xcursor/xcursor@@wlr_xcursor@sta/wlr_xcursor.c.o'.
+[215/454] Generating 'rootston/rootston@@rootston@exe/xdg-shell-protocol.h'.
+[216/454] Generating 'rootston/rootston@@rootston@exe/idle-inhibit-unstable-v1-protocol.h'.
+[217/454] Generating 'rootston/rootston@@rootston@exe/linux-dmabuf-unstable-v1-protocol.h'.
+[218/454] Generating 'rootston/rootston@@rootston@exe/xdg-shell-unstable-v6-protocol.h'.
+[219/454] Generating 'rootston/rootston@@rootston@exe/xdg-output-unstable-v1-protocol.h'.
+[220/454] Generating 'rootston/rootston@@rootston@exe/gamma-control-protocol.h'.
+[221/454] Generating 'rootston/rootston@@rootston@exe/gtk-primary-selection-protocol.h'.
+[222/454] Generating 'rootston/rootston@@rootston@exe/idle-protocol.h'.
+[223/454] Compiling C object 'xcursor/xcursor@@wlr_xcursor@sta/xcursor.c.o'.
+[224/454] Generating 'rootston/rootston@@rootston@exe/screenshooter-protocol.h'.
+[225/454] Linking static target xcursor/libwlr_xcursor.a.
+[226/454] Generating 'rootston/rootston@@rootston@exe/server-decoration-protocol.h'.
+[227/454] Generating 'rootston/rootston@@rootston@exe/virtual-keyboard-unstable-v1-protocol.h'.
+[228/454] Generating 'rootston/rootston@@rootston@exe/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[229/454] Generating 'rootston/rootston@@rootston@exe/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[230/454] Generating 'rootston/rootston@@rootston@exe/wlr-layer-shell-unstable-v1-protocol.h'.
+[231/454] Generating 'rootston/rootston@@rootston@exe/wlr-screencopy-unstable-v1-protocol.h'.
+[232/454] Generating 'rootston/rootston@@rootston@exe/xdg-shell-unstable-v6-client-protocol.h'.
+[233/454] Generating 'rootston/rootston@@rootston@exe/xdg-shell-client-protocol.h'.
+[234/454] Generating 'rootston/rootston@@rootston@exe/idle-inhibit-unstable-v1-client-protocol.h'.
+[235/454] Generating 'rootston/rootston@@rootston@exe/idle-client-protocol.h'.
+[236/454] Generating 'rootston/rootston@@rootston@exe/screenshooter-client-protocol.h'.
+[237/454] Generating 'rootston/rootston@@rootston@exe/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[238/454] Generating 'rootston/rootston@@rootston@exe/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[239/454] Generating 'rootston/rootston@@rootston@exe/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[240/454] Generating 'rootston/rootston@@rootston@exe/wlr-screencopy-unstable-v1-client-protocol.h'.
+[241/454] Linking target libwlroots.so.0.0.0.
+[242/454] Compiling C object 'rootston/rootston@@rootston@exe/seat.c.o'.
+[243/454] Compiling C object 'rootston/rootston@@rootston@exe/input.c.o'.
+[244/454] Compiling C object 'rootston/rootston@@rootston@exe/desktop.c.o'.
+[245/454] Generating symbol file 'wlroots@sha/libwlroots.so.0.0.0.symbols'.
+[246/454] Compiling C object 'rootston/rootston@@rootston@exe/keyboard.c.o'.
+[247/454] Compiling C object 'rootston/rootston@@rootston@exe/config.c.o'.
+[248/454] Compiling C object 'rootston/rootston@@rootston@exe/ini.c.o'.
+[249/454] Compiling C object 'rootston/rootston@@rootston@exe/cursor.c.o'.
+[250/454] Compiling C object 'rootston/rootston@@rootston@exe/layer_shell.c.o'.
+[251/454] Compiling C object 'rootston/rootston@@rootston@exe/main.c.o'.
+[252/454] Compiling C object 'rootston/rootston@@rootston@exe/virtual_keyboard.c.o'.
+[253/454] Compiling C object 'rootston/rootston@@rootston@exe/output.c.o'.
+[254/454] Compiling C object 'rootston/rootston@@rootston@exe/xdg_shell_v6.c.o'.
+[255/454] Compiling C object 'rootston/rootston@@rootston@exe/wl_shell.c.o'.
+[256/454] Compiling C object 'rootston/rootston@@rootston@exe/xdg_shell.c.o'.
+[257/454] Linking target examples/simple.
+[258/454] Linking target examples/pointer.
+[259/454] Compiling C object 'examples/examples@@touch@exe/cat.c.o'.
+[260/454] Linking target examples/touch.
+[261/454] Compiling C object 'rootston/rootston@@rootston@exe/xwayland.c.o'.
+[262/454] Compiling C object 'examples/examples@@rotation@exe/rotation.c.o'.
+[263/454] Linking target rootston/rootston.
+[264/454] Compiling C object 'examples/examples@@rotation@exe/cat.c.o'.
+[265/454] Compiling C object 'examples/examples@@tablet@exe/tablet.c.o'.
+[266/454] Linking target examples/rotation.
+[267/454] Linking target examples/tablet.
+[268/454] Compiling C object 'examples/examples@@multi-pointer@exe/multi-pointer.c.o'.
+[269/454] Compiling C object 'examples/examples@@output-layout@exe/output-layout.c.o'.
+[270/454] Linking target examples/multi-pointer.
+[271/454] Generating 'examples/examples@@screenshot@exe/xdg-shell-protocol.h'.
+[272/454] Compiling C object 'examples/examples@@output-layout@exe/cat.c.o'.
+[273/454] Generating 'examples/examples@@screenshot@exe/idle-inhibit-unstable-v1-protocol.h'.
+[274/454] Generating 'examples/examples@@screenshot@exe/linux-dmabuf-unstable-v1-protocol.h'.
+[275/454] Generating 'examples/examples@@screenshot@exe/xdg-shell-unstable-v6-protocol.h'.
+[276/454] Generating 'examples/examples@@screenshot@exe/xdg-output-unstable-v1-protocol.h'.
+[277/454] Generating 'examples/examples@@screenshot@exe/gamma-control-protocol.h'.
+[278/454] Generating 'examples/examples@@screenshot@exe/gtk-primary-selection-protocol.h'.
+[279/454] Generating 'examples/examples@@screenshot@exe/idle-protocol.h'.
+[280/454] Generating 'examples/examples@@screenshot@exe/screenshooter-protocol.h'.
+[281/454] Generating 'examples/examples@@screenshot@exe/server-decoration-protocol.h'.
+[282/454] Generating 'examples/examples@@screenshot@exe/virtual-keyboard-unstable-v1-protocol.h'.
+[283/454] Generating 'examples/examples@@screenshot@exe/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[284/454] Generating 'examples/examples@@screenshot@exe/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[285/454] Linking target examples/output-layout.
+[286/454] Generating 'examples/examples@@screenshot@exe/wlr-layer-shell-unstable-v1-protocol.h'.
+[287/454] Generating 'examples/examples@@screenshot@exe/wlr-screencopy-unstable-v1-protocol.h'.
+[288/454] Generating 'examples/examples@@screenshot@exe/xdg-shell-unstable-v6-client-protocol.h'.
+[289/454] Generating 'examples/examples@@screenshot@exe/idle-inhibit-unstable-v1-client-protocol.h'.
+[290/454] Generating 'examples/examples@@screenshot@exe/xdg-shell-client-protocol.h'.
+[291/454] Generating 'examples/examples@@screenshot@exe/screenshooter-client-protocol.h'.
+[292/454] Generating 'examples/examples@@screenshot@exe/idle-client-protocol.h'.
+[293/454] Generating 'examples/examples@@screenshot@exe/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[294/454] Generating 'examples/examples@@screenshot@exe/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[295/454] Generating 'examples/examples@@screenshot@exe/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[296/454] Generating 'examples/examples@@screenshot@exe/wlr-screencopy-unstable-v1-client-protocol.h'.
+[297/454] Generating 'examples/examples@@idle@exe/xdg-shell-protocol.h'.
+[298/454] Generating 'examples/examples@@idle@exe/idle-inhibit-unstable-v1-protocol.h'.
+[299/454] Generating 'examples/examples@@idle@exe/linux-dmabuf-unstable-v1-protocol.h'.
+[300/454] Generating 'examples/examples@@idle@exe/xdg-shell-unstable-v6-protocol.h'.
+[301/454] Generating 'examples/examples@@idle@exe/xdg-output-unstable-v1-protocol.h'.
+[302/454] Generating 'examples/examples@@idle@exe/gamma-control-protocol.h'.
+[303/454] Generating 'examples/examples@@idle@exe/gtk-primary-selection-protocol.h'.
+[304/454] Generating 'examples/examples@@idle@exe/idle-protocol.h'.
+[305/454] Generating 'examples/examples@@idle@exe/screenshooter-protocol.h'.
+[306/454] Generating 'examples/examples@@idle@exe/server-decoration-protocol.h'.
+[307/454] Generating 'examples/examples@@idle@exe/virtual-keyboard-unstable-v1-protocol.h'.
+[308/454] Compiling C object 'examples/examples@@screenshot@exe/screenshot.c.o'.
+[309/454] Generating 'examples/examples@@idle@exe/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[310/454] Generating 'examples/examples@@idle@exe/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[311/454] Generating 'examples/examples@@idle@exe/wlr-layer-shell-unstable-v1-protocol.h'.
+[312/454] Generating 'examples/examples@@idle@exe/wlr-screencopy-unstable-v1-protocol.h'.
+[313/454] Generating 'examples/examples@@idle@exe/xdg-shell-unstable-v6-client-protocol.h'.
+[314/454] Generating 'examples/examples@@idle@exe/xdg-shell-client-protocol.h'.
+[315/454] Generating 'examples/examples@@idle@exe/idle-inhibit-unstable-v1-client-protocol.h'.
+[316/454] Generating 'examples/examples@@idle@exe/idle-client-protocol.h'.
+[317/454] Generating 'examples/examples@@idle@exe/screenshooter-client-protocol.h'.
+[318/454] Generating 'examples/examples@@idle@exe/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[319/454] Linking target examples/screenshot.
+[320/454] Generating 'examples/examples@@idle@exe/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[321/454] Generating 'examples/examples@@idle@exe/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[322/454] Generating 'examples/examples@@idle-inhibit@exe/xdg-shell-protocol.h'.
+[323/454] Generating 'examples/examples@@idle@exe/wlr-screencopy-unstable-v1-client-protocol.h'.
+[324/454] Generating 'examples/examples@@idle-inhibit@exe/idle-inhibit-unstable-v1-protocol.h'.
+[325/454] Generating 'examples/examples@@idle-inhibit@exe/linux-dmabuf-unstable-v1-protocol.h'.
+[326/454] Generating 'examples/examples@@idle-inhibit@exe/xdg-shell-unstable-v6-protocol.h'.
+[327/454] Generating 'examples/examples@@idle-inhibit@exe/xdg-output-unstable-v1-protocol.h'.
+[328/454] Generating 'examples/examples@@idle-inhibit@exe/gamma-control-protocol.h'.
+[329/454] Generating 'examples/examples@@idle-inhibit@exe/gtk-primary-selection-protocol.h'.
+[330/454] Generating 'examples/examples@@idle-inhibit@exe/idle-protocol.h'.
+[331/454] Generating 'examples/examples@@idle-inhibit@exe/screenshooter-protocol.h'.
+[332/454] Generating 'examples/examples@@idle-inhibit@exe/server-decoration-protocol.h'.
+[333/454] Generating 'examples/examples@@idle-inhibit@exe/virtual-keyboard-unstable-v1-protocol.h'.
+[334/454] Compiling C object 'examples/examples@@idle@exe/idle.c.o'.
+[335/454] Generating 'examples/examples@@idle-inhibit@exe/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[336/454] Generating 'examples/examples@@idle-inhibit@exe/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[337/454] Generating 'examples/examples@@idle-inhibit@exe/wlr-layer-shell-unstable-v1-protocol.h'.
+[338/454] Generating 'examples/examples@@idle-inhibit@exe/wlr-screencopy-unstable-v1-protocol.h'.
+[339/454] Generating 'examples/examples@@idle-inhibit@exe/xdg-shell-unstable-v6-client-protocol.h'.
+[340/454] Generating 'examples/examples@@idle-inhibit@exe/xdg-shell-client-protocol.h'.
+[341/454] Generating 'examples/examples@@idle-inhibit@exe/idle-inhibit-unstable-v1-client-protocol.h'.
+[342/454] Generating 'examples/examples@@idle-inhibit@exe/idle-client-protocol.h'.
+[343/454] Generating 'examples/examples@@idle-inhibit@exe/screenshooter-client-protocol.h'.
+[344/454] Generating 'examples/examples@@idle-inhibit@exe/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[345/454] Generating 'examples/examples@@idle-inhibit@exe/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[346/454] Generating 'examples/examples@@idle-inhibit@exe/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[347/454] Generating 'examples/examples@@idle-inhibit@exe/wlr-screencopy-unstable-v1-client-protocol.h'.
+[348/454] Linking target examples/idle.
+[349/454] Generating 'examples/examples@@layer-shell@exe/xdg-shell-protocol.h'.
+[350/454] Generating 'examples/examples@@dmabuf-capture@exe/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[351/454] Generating 'examples/examples@@layer-shell@exe/idle-inhibit-unstable-v1-protocol.h'.
+[352/454] Generating 'examples/examples@@layer-shell@exe/linux-dmabuf-unstable-v1-protocol.h'.
+[353/454] Generating 'examples/examples@@layer-shell@exe/xdg-shell-unstable-v6-protocol.h'.
+[354/454] Generating 'examples/examples@@layer-shell@exe/xdg-output-unstable-v1-protocol.h'.
+[355/454] Generating 'examples/examples@@layer-shell@exe/gamma-control-protocol.h'.
+[356/454] Generating 'examples/examples@@layer-shell@exe/gtk-primary-selection-protocol.h'.
+[357/454] Generating 'examples/examples@@layer-shell@exe/idle-protocol.h'.
+[358/454] Generating 'examples/examples@@layer-shell@exe/screenshooter-protocol.h'.
+[359/454] Generating 'examples/examples@@layer-shell@exe/server-decoration-protocol.h'.
+[360/454] Generating 'examples/examples@@layer-shell@exe/virtual-keyboard-unstable-v1-protocol.h'.
+[361/454] Generating 'examples/examples@@layer-shell@exe/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[362/454] Generating 'examples/examples@@layer-shell@exe/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[363/454] Compiling C object 'examples/examples@@idle-inhibit@exe/idle-inhibit.c.o'.
+[364/454] Generating 'examples/examples@@layer-shell@exe/wlr-layer-shell-unstable-v1-protocol.h'.
+[365/454] Generating 'examples/examples@@layer-shell@exe/wlr-screencopy-unstable-v1-protocol.h'.
+[366/454] Generating 'examples/examples@@layer-shell@exe/xdg-shell-unstable-v6-client-protocol.h'.
+[367/454] Generating 'examples/examples@@layer-shell@exe/xdg-shell-client-protocol.h'.
+[368/454] Generating 'examples/examples@@layer-shell@exe/idle-inhibit-unstable-v1-client-protocol.h'.
+[369/454] Generating 'examples/examples@@layer-shell@exe/idle-client-protocol.h'.
+[370/454] Generating 'examples/examples@@layer-shell@exe/screenshooter-client-protocol.h'.
+[371/454] Generating 'examples/examples@@layer-shell@exe/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[372/454] Generating 'examples/examples@@layer-shell@exe/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[373/454] Generating 'examples/examples@@layer-shell@exe/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[374/454] Generating 'examples/examples@@layer-shell@exe/wlr-screencopy-unstable-v1-client-protocol.h'.
+[375/454] Linking target examples/idle-inhibit.
+[376/454] Generating 'examples/examples@@input-inhibitor@exe/xdg-shell-protocol.h'.
+[377/454] Generating 'examples/examples@@input-inhibitor@exe/idle-inhibit-unstable-v1-protocol.h'.
+[378/454] Generating 'examples/examples@@input-inhibitor@exe/linux-dmabuf-unstable-v1-protocol.h'.
+[379/454] Generating 'examples/examples@@input-inhibitor@exe/xdg-shell-unstable-v6-protocol.h'.
+[380/454] Generating 'examples/examples@@input-inhibitor@exe/xdg-output-unstable-v1-protocol.h'.
+[381/454] Generating 'examples/examples@@input-inhibitor@exe/gamma-control-protocol.h'.
+[382/454] Generating 'examples/examples@@input-inhibitor@exe/gtk-primary-selection-protocol.h'.
+[383/454] Generating 'examples/examples@@input-inhibitor@exe/idle-protocol.h'.
+[384/454] Generating 'examples/examples@@input-inhibitor@exe/screenshooter-protocol.h'.
+[385/454] Generating 'examples/examples@@input-inhibitor@exe/server-decoration-protocol.h'.
+[386/454] Generating 'examples/examples@@input-inhibitor@exe/virtual-keyboard-unstable-v1-protocol.h'.
+[387/454] Generating 'examples/examples@@input-inhibitor@exe/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[388/454] Generating 'examples/examples@@input-inhibitor@exe/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[389/454] Generating 'examples/examples@@input-inhibitor@exe/wlr-layer-shell-unstable-v1-protocol.h'.
+[390/454] Generating 'examples/examples@@input-inhibitor@exe/wlr-screencopy-unstable-v1-protocol.h'.
+[391/454] Generating 'examples/examples@@input-inhibitor@exe/xdg-shell-unstable-v6-client-protocol.h'.
+[392/454] Generating 'examples/examples@@input-inhibitor@exe/xdg-shell-client-protocol.h'.
+[393/454] Generating 'examples/examples@@input-inhibitor@exe/idle-inhibit-unstable-v1-client-protocol.h'.
+[394/454] Compiling C object 'examples/examples@@layer-shell@exe/layer-shell.c.o'.
+[395/454] Generating 'examples/examples@@input-inhibitor@exe/idle-client-protocol.h'.
+[396/454] Generating 'examples/examples@@input-inhibitor@exe/screenshooter-client-protocol.h'.
+[397/454] Generating 'examples/examples@@input-inhibitor@exe/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[398/454] Generating 'examples/examples@@input-inhibitor@exe/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[399/454] Generating 'examples/examples@@input-inhibitor@exe/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[400/454] Generating 'examples/examples@@input-inhibitor@exe/wlr-screencopy-unstable-v1-client-protocol.h'.
+[401/454] Generating 'examples/examples@@dmabuf-capture@exe/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[402/454] Generating 'examples/examples@@dmabuf-capture@exe/xdg-shell-protocol.h'.
+[403/454] Linking target examples/layer-shell.
+[404/454] Generating 'examples/examples@@dmabuf-capture@exe/idle-inhibit-unstable-v1-protocol.h'.
+[405/454] Generating 'examples/examples@@dmabuf-capture@exe/linux-dmabuf-unstable-v1-protocol.h'.
+[406/454] Generating 'examples/examples@@dmabuf-capture@exe/xdg-shell-unstable-v6-protocol.h'.
+[407/454] Generating 'examples/examples@@dmabuf-capture@exe/xdg-output-unstable-v1-protocol.h'.
+[408/454] Generating 'examples/examples@@dmabuf-capture@exe/gamma-control-protocol.h'.
+[409/454] Generating 'examples/examples@@dmabuf-capture@exe/gtk-primary-selection-protocol.h'.
+[410/454] Generating 'examples/examples@@dmabuf-capture@exe/idle-protocol.h'.
+[411/454] Generating 'examples/examples@@dmabuf-capture@exe/screenshooter-protocol.h'.
+[412/454] Generating 'examples/examples@@dmabuf-capture@exe/server-decoration-protocol.h'.
+[413/454] Compiling C object 'examples/examples@@input-inhibitor@exe/input-inhibitor.c.o'.
+[414/454] Generating 'examples/examples@@dmabuf-capture@exe/virtual-keyboard-unstable-v1-protocol.h'.
+[415/454] Generating 'examples/examples@@dmabuf-capture@exe/wlr-layer-shell-unstable-v1-protocol.h'.
+[416/454] Generating 'examples/examples@@dmabuf-capture@exe/wlr-screencopy-unstable-v1-protocol.h'.
+[417/454] Generating 'examples/examples@@dmabuf-capture@exe/xdg-shell-unstable-v6-client-protocol.h'.
+[418/454] Generating 'examples/examples@@dmabuf-capture@exe/xdg-shell-client-protocol.h'.
+[419/454] Generating 'examples/examples@@dmabuf-capture@exe/idle-inhibit-unstable-v1-client-protocol.h'.
+[420/454] Generating 'examples/examples@@dmabuf-capture@exe/idle-client-protocol.h'.
+[421/454] Generating 'examples/examples@@dmabuf-capture@exe/screenshooter-client-protocol.h'.
+[422/454] Generating 'examples/examples@@dmabuf-capture@exe/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[423/454] Generating 'examples/examples@@dmabuf-capture@exe/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[424/454] Generating 'examples/examples@@dmabuf-capture@exe/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[425/454] Linking target examples/input-inhibitor.
+[426/454] Generating 'examples/examples@@dmabuf-capture@exe/wlr-screencopy-unstable-v1-client-protocol.h'.
+[427/454] Generating 'examples/examples@@screencopy@exe/linux-dmabuf-unstable-v1-protocol.h'.
+[428/454] Generating 'examples/examples@@screencopy@exe/xdg-shell-unstable-v6-protocol.h'.
+[429/454] Generating 'examples/examples@@screencopy@exe/xdg-output-unstable-v1-protocol.h'.
+[430/454] Generating 'examples/examples@@screencopy@exe/gamma-control-protocol.h'.
+[431/454] Generating 'examples/examples@@screencopy@exe/xdg-shell-protocol.h'.
+[432/454] Generating 'examples/examples@@screencopy@exe/idle-inhibit-unstable-v1-protocol.h'.
+[433/454] Generating 'examples/examples@@screencopy@exe/gtk-primary-selection-protocol.h'.
+[434/454] Generating 'examples/examples@@screencopy@exe/idle-protocol.h'.
+[435/454] Generating 'examples/examples@@screencopy@exe/screenshooter-protocol.h'.
+[436/454] Generating 'examples/examples@@screencopy@exe/server-decoration-protocol.h'.
+[437/454] Generating 'examples/examples@@screencopy@exe/virtual-keyboard-unstable-v1-protocol.h'.
+[438/454] Generating 'examples/examples@@screencopy@exe/wlr-export-dmabuf-unstable-v1-protocol.h'.
+[439/454] Generating 'examples/examples@@screencopy@exe/wlr-input-inhibitor-unstable-v1-protocol.h'.
+[440/454] Generating 'examples/examples@@screencopy@exe/wlr-layer-shell-unstable-v1-protocol.h'.
+[441/454] Generating 'examples/examples@@screencopy@exe/wlr-screencopy-unstable-v1-protocol.h'.
+[442/454] Generating 'examples/examples@@screencopy@exe/xdg-shell-unstable-v6-client-protocol.h'.
+[443/454] Generating 'examples/examples@@screencopy@exe/xdg-shell-client-protocol.h'.
+[444/454] Generating 'examples/examples@@screencopy@exe/idle-inhibit-unstable-v1-client-protocol.h'.
+[445/454] Generating 'examples/examples@@screencopy@exe/idle-client-protocol.h'.
+[446/454] Generating 'examples/examples@@screencopy@exe/screenshooter-client-protocol.h'.
+[447/454] Generating 'examples/examples@@screencopy@exe/wlr-export-dmabuf-unstable-v1-client-protocol.h'.
+[448/454] Generating 'examples/examples@@screencopy@exe/wlr-input-inhibitor-unstable-v1-client-protocol.h'.
+[449/454] Generating 'examples/examples@@screencopy@exe/wlr-layer-shell-unstable-v1-client-protocol.h'.
+[450/454] Generating 'examples/examples@@screencopy@exe/wlr-screencopy-unstable-v1-client-protocol.h'.
+[451/454] Compiling C object 'examples/examples@@screencopy@exe/screencopy.c.o'.
+[452/454] Compiling C object 'examples/examples@@dmabuf-capture@exe/dmabuf-capture.c.o'.
+[453/454] Linking target examples/screencopy.
+[454/454] Linking target examples/dmabuf-capture.
+ninja: Entering directory `build'
+[0/1] Installing files.
+Installing subdir /home/phoenix/rice/packages/scripts/workdir/include/wlr to /usr/local/include/wlr
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/xwayland.h to /usr/local/include/wlr
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/xcursor.h to /usr/local/include/wlr
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend.h to /usr/local/include/wlr
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/interfaces/wlr_input_device.h to /usr/local/include/wlr/interfaces
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/interfaces/wlr_tablet_pad.h to /usr/local/include/wlr/interfaces
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/interfaces/wlr_touch.h to /usr/local/include/wlr/interfaces
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/interfaces/wlr_keyboard.h to /usr/local/include/wlr/interfaces
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/interfaces/wlr_pointer.h to /usr/local/include/wlr/interfaces
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/interfaces/wlr_output.h to /usr/local/include/wlr/interfaces
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/interfaces/wlr_tablet_tool.h to /usr/local/include/wlr/interfaces
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/util/edges.h to /usr/local/include/wlr/util
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/util/region.h to /usr/local/include/wlr/util
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/util/log.h to /usr/local/include/wlr/util
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_input_device.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_compositor.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_data_device.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_region.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_primary_selection.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_buffer.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_cursor.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_tablet_pad.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_screenshooter.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_matrix.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_idle_inhibit_v1.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_output_layout.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_server_decoration.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_surface.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_input_inhibitor.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_touch.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_seat.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_screencopy_v1.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_xdg_output.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_keyboard.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_gamma_control.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_xdg_shell.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_box.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_pointer.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_layer_shell.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_xdg_shell_v6.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_linux_dmabuf.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_output.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_wl_shell.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_virtual_keyboard_v1.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_list.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_export_dmabuf_v1.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_xcursor_manager.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_output_damage.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_tablet_tool.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/types/wlr_idle.h to /usr/local/include/wlr/types
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/drm.h to /usr/local/include/wlr/backend
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/multi.h to /usr/local/include/wlr/backend
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/interface.h to /usr/local/include/wlr/backend
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/wayland.h to /usr/local/include/wlr/backend
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/x11.h to /usr/local/include/wlr/backend
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/session.h to /usr/local/include/wlr/backend
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/libinput.h to /usr/local/include/wlr/backend
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/headless.h to /usr/local/include/wlr/backend
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/backend/session/interface.h to /usr/local/include/wlr/backend/session
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/render/gles2.h to /usr/local/include/wlr/render
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/render/wlr_texture.h to /usr/local/include/wlr/render
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/render/interface.h to /usr/local/include/wlr/render
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/render/egl.h to /usr/local/include/wlr/render
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/render/wlr_renderer.h to /usr/local/include/wlr/render
+Installing /home/phoenix/rice/packages/scripts/workdir/include/wlr/render/dmabuf.h to /usr/local/include/wlr/render
+Installing libwlroots.so.0.0.0 to /usr/local/lib
+Installing /home/phoenix/rice/packages/scripts/workdir/build/include/wlr/config.h to /usr/local/include/wlr
+Installing /home/phoenix/rice/packages/scripts/workdir/build/include/wlr/version.h to /usr/local/include/wlr
+Installing /home/phoenix/rice/packages/scripts/workdir/build/meson-private/wlroots.pc to /usr/local/lib/pkgconfig
+Installing wayland
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) wayland-1.15.0-1
+
+Total Installed Size:  0.70 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling wayland...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing wayland-protocols
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) wayland-protocols-1.14-1
+
+Total Installed Size:  0.35 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling wayland-protocols...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing xorg-server-xwayland
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) xorg-server-xwayland-1.20.0-9
+
+Total Installed Size:  2.07 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling xorg-server-xwayland...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing libinput
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) libinput-1.11.2-1
+
+Total Installed Size:  4.38 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling libinput...
+:: Running post-transaction hooks...
+(1/3) Updating udev hardware database...
+(2/3) Reloading device manager configuration...
+(3/3) Arming ConditionNeedsUpdate...
+Installing libcap
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) libcap-2.25-1
+
+Total Installed Size:  0.14 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling libcap...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing libdrm
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) libdrm-2.4.92-1
+
+Total Installed Size:  0.90 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling libdrm...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing pcre
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) pcre-8.42-1
+
+Total Installed Size:  3.39 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling pcre...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing json-c
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) json-c-0.13.1-1
+
+Total Installed Size:  0.14 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling json-c...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing pango
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) pango-1.42.1-1
+
+Total Installed Size:  3.62 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling pango...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing cairo
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) cairo-1.15.12-1
+
+Total Installed Size:  3.39 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling cairo...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing gdk-pixbuf2
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) gdk-pixbuf2-2.36.12-1
+
+Total Installed Size:  3.90 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling gdk-pixbuf2...
+:: Running post-transaction hooks...
+(1/2) Probing GDK-Pixbuf loader modules...
+(2/2) Arming ConditionNeedsUpdate...
+Installing pam
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) pam-1.3.1-1
+
+Total Installed Size:  2.61 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling pam...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing dbus
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) dbus-1.12.8-1
+
+Total Installed Size:  0.90 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling dbus...
+:: Running post-transaction hooks...
+(1/4) Reloading system manager configuration...
+(2/4) Creating system user accounts...
+(3/4) Creating temporary files...
+(4/4) Arming ConditionNeedsUpdate...
+Installing imagemagick
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) imagemagick-7.0.8.6-1
+
+Total Installed Size:  0.47 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling imagemagick...
+:: Running post-transaction hooks...
+(1/2) Warn about old perl modules
+(2/2) Arming ConditionNeedsUpdate...
+Installing ffmpeg
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) ffmpeg-1:4.0.1-2
+
+Total Installed Size:  28.17 MiB
+Net Upgrade Size:       0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling ffmpeg...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Unconventional install, calling install script.
+cc -std=c99 -pedantic -c -o .build/main.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/main.c
+cc -std=c99 -pedantic -c -o .build/string.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/string.c
+cc -std=c99 -pedantic -c -o .build/utf8_chsize.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/utf8_chsize.c
+cc -std=c99 -pedantic -c -o .build/utf8_decode.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/utf8_decode.c
+cc -std=c99 -pedantic -c -o .build/utf8_encode.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/utf8_encode.c
+cc -std=c99 -pedantic -c -o .build/utf8_fgetch.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/utf8_fgetch.c
+cc -std=c99 -pedantic -c -o .build/utf8_fputch.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/utf8_fputch.c
+cc -std=c99 -pedantic -c -o .build/utf8_size.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/utf8_size.c
+cc -std=c99 -pedantic -c -o .build/util.o -g -DVERSION='"1.3.4"' -Wall -Wextra -Werror -Wno-unused-parameter -Iinclude src/util.c
+cc -static -o scdoc .build/main.o .build/string.o .build/utf8_chsize.o .build/utf8_decode.o .build/utf8_encode.o .build/utf8_fgetch.o .build/utf8_fputch.o .build/utf8_size.o .build/util.o
+./scdoc < scdoc.1.scd > scdoc.1
+install -Dm755 scdoc /usr/local/bin/scdoc
+install -Dm644 scdoc.1 /usr/local/share/man/man1/scdoc.1
+Installing egl-wayland
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) egl-wayland-1.0.4-1
+
+Total Installed Size:  0.05 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling egl-wayland...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing mesa
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) mesa-18.1.3-1
+
+Total Installed Size:  58.71 MiB
+Net Upgrade Size:       0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling mesa...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing libxkbcommon
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) libxkbcommon-0.8.0-1
+
+Total Installed Size:  0.54 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling libxkbcommon...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing udev
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) systemd-239.0-2
+
+Total Installed Size:  18.96 MiB
+Net Upgrade Size:       0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling systemd...
+:: Running post-transaction hooks...
+(1/9) Updating linux initcpios...
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+  -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+==> Starting build: 4.17.4-1-ARCH
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [autodetect]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [keymap]
+  -> Running build hook: [resume]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux.img
+==> Image generation successful
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+  -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+==> Starting build: 4.17.4-1-ARCH
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+==> WARNING: Possibly missing firmware for module: aic94xx
+==> WARNING: Possibly missing firmware for module: wd719x
+  -> Running build hook: [keyboard]
+  -> Running build hook: [keymap]
+  -> Running build hook: [resume]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-fallback.img
+==> Image generation successful
+(2/9) Updating journal message catalog...
+(3/9) Reloading system manager configuration...
+(4/9) Updating udev hardware database...
+(5/9) Applying kernel sysctl settings...
+(6/9) Creating system user accounts...
+(7/9) Creating temporary files...
+(8/9) Reloading device manager configuration...
+(9/9) Arming ConditionNeedsUpdate...
+Installing pixman
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) pixman-0.34.0-1
+
+Total Installed Size:  0.74 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling pixman...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing systemd
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) systemd-239.0-2
+
+Total Installed Size:  18.96 MiB
+Net Upgrade Size:       0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling systemd...
+:: Running post-transaction hooks...
+(1/9) Updating linux initcpios...
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+  -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+==> Starting build: 4.17.4-1-ARCH
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [autodetect]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [keymap]
+  -> Running build hook: [resume]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux.img
+==> Image generation successful
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+  -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+==> Starting build: 4.17.4-1-ARCH
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+==> WARNING: Possibly missing firmware for module: aic94xx
+==> WARNING: Possibly missing firmware for module: wd719x
+  -> Running build hook: [keyboard]
+  -> Running build hook: [keymap]
+  -> Running build hook: [resume]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-fallback.img
+==> Image generation successful
+(2/9) Updating journal message catalog...
+(3/9) Reloading system manager configuration...
+(4/9) Updating udev hardware database...
+(5/9) Applying kernel sysctl settings...
+(6/9) Creating system user accounts...
+(7/9) Creating temporary files...
+(8/9) Reloading device manager configuration...
+(9/9) Arming ConditionNeedsUpdate...
+Installing sway
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) sway-0.15.2-2
+
+Total Installed Size:  5.38 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling sway...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing python
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) python-3.6.6-1
+
+Total Installed Size:  137.32 MiB
+Net Upgrade Size:        0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling python...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing python-pip
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) python-pip-10.0.1-1
+
+Total Installed Size:  0.93 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling python-pip...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Unconventional install, calling install script.
+Collecting neovim
+  Downloading https://files.pythonhosted.org/packages/e4/57/48ad9ec3687c40aed58146e2ac539e0e0134ec452db905560b77fedf7b69/neovim-0.2.6.tar.gz
+Requirement already satisfied: msgpack>=0.5.0 in /usr/lib/python3.6/site-packages (from neovim) (0.5.6)
+Collecting greenlet (from neovim)
+  Downloading https://files.pythonhosted.org/packages/dd/ce/7b3a19a3eb8c79e6237ba1fb7a8729b39034dd2de8753b8d27e5abc59fd5/greenlet-0.4.13-cp36-cp36m-manylinux1_x86_64.whl (43kB)
+Installing collected packages: greenlet, neovim
+  Running setup.py install for neovim: started
+    Running setup.py install for neovim: finished with status 'done'
+Successfully installed greenlet-0.4.13 neovim-0.2.6
+Installing python-setuptools
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) python-setuptools-1:39.2.0-2
+
+Total Installed Size:  1.48 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling python-setuptools...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing git
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) git-2.18.0-1
+
+Total Installed Size:  34.68 MiB
+Net Upgrade Size:       0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling git...
+:: Running post-transaction hooks...
+(1/3) Reloading system manager configuration...
+(2/3) Creating system user accounts...
+(3/3) Arming ConditionNeedsUpdate...
+Installing neovim
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) neovim-0.3.0-1
+
+Total Installed Size:  18.93 MiB
+Net Upgrade Size:       0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling neovim...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing ranger
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) ranger-1.9.1-1
+
+Total Installed Size:  1.78 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling ranger...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing yaourt
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) yaourt-1.9-1
+
+Total Installed Size:  0.81 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling yaourt...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing go
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) go-2:1.10.3-1
+
+Total Installed Size:  336.62 MiB
+Net Upgrade Size:        0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling go...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Installing ninja
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) ninja-1.8.2-1
+
+Total Installed Size:  0.31 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+reinstalling ninja...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
