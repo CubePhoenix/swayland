@@ -42,6 +42,7 @@ set smartcase
 set tabstop=4
 set softtabstop=0
 set expandtab
+set shiftwidth=4
 set noswapfile
 set nowrap
 let g:deoplete#sources#go#gocode_binary = $HOME.'/go/bin/gocode'
@@ -87,8 +88,6 @@ let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
 " Make Tagbar-Highlighting look nicer
 highlight TagbarHighlight ctermfg=yellow
-" Start LaTeX preview
-nnoremap <Leader>P :LLPStartPreview<CR>
 
 " Ultisnips
 "let g:UltiSnipsExpandTrigger="<tab>"
@@ -101,3 +100,9 @@ let g:deoplete#enable_at_startup = 1
 autocmd CompleteDone * pclose!
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" ################# Running Programs ##################
+autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%F<CR> 
+autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%F<CR>
+autocmd FileType tex nnoremap <buffer> <Leader>r :LLPStartPreview<CR>
+autocmd FileType sh nnoremap <buffer> <Leader>r :!%F<CR>
