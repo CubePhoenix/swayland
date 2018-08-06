@@ -4,3 +4,45 @@
 [submodule "files/home/.config/nvim/bundle/deoplete.nvim"]
 	path = files/home/.config/nvim/bundle/deoplete.nvim
 	url = https://github.com/Shougo/deoplete.nvim
+[submodule "files/home/.config/nvim/bundle/nerdtree"]
+	path = files/home/.config/nvim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "files/home/.config/nvim/bundle/syntastic"]
+	path = files/home/.config/nvim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule "files/home/.config/nvim/bundle/vim-surround"]
+	path = files/home/.config/nvim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "files/home/.config/nvim/bundle/vim-airline"]
+	path = files/home/.config/nvim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
+[submodule "files/home/.config/nvim/bundle/vim-airline-themes"]
+	path = files/home/.config/nvim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "files/home/.config/nvim/bundle/nerdcommenter"]
+	path = files/home/.config/nvim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule "files/home/.config/nvim/bundle/auto-pairs"]
+	path = files/home/.config/nvim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs
+[submodule "files/home/.config/nvim/bundle/deoplete-go"]
+	path = files/home/.config/nvim/bundle/deoplete-go
+	url = https://github.com/zchee/deoplete-go
+[submodule "files/home/.config/nvim/bundle/deoplete-jedi"]
+	path = files/home/.config/nvim/bundle/deoplete-jedi
+	url = https://github.com/zchee/deoplete-jedi
+[submodule "files/home/.config/nvim/bundle/deoplete-clang"]
+	path = files/home/.config/nvim/bundle/deoplete-clang
+	url = https://github.com/zchee/deoplete-clang
+[submodule "files/home/.config/nvim/bundle/vim-polyglot"]
+	path = files/home/.config/nvim/bundle/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule "files/home/.config/nvim/bundle/tagbar"]
+	path = files/home/.config/nvim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "files/home/.config/nvim/bundle/ultisnips"]
+	path = files/home/.config/nvim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "files/home/.config/nvim/bundle/vim-snippets"]
+	path = files/home/.config/nvim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets
