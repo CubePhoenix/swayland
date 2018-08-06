@@ -46,3 +46,6 @@
 [submodule "files/home/.config/nvim/bundle/vim-snippets"]
 	path = files/home/.config/nvim/bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets
+[submodule "files/home/.config/nvim/bundle/vim-fugitive"]
+	path = files/home/.config/nvim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive

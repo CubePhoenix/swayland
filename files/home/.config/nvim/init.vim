@@ -4,6 +4,7 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'} " Autocompletion
 Plug 'scrooloose/nerdtree' " File overview
 Plug 'scrooloose/syntastic' " Syntax highlighting
 Plug 'tpope/vim-surround' " Surround words with parenthesis, etc...
+Plug 'tpope/vim-fugitive' " Git integration for vim
 Plug 'bling/vim-airline' " Infobar
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'altercation/vim-colors-solarized' " Solarized palette
