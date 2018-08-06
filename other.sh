@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Regenerate grub configuration
-grub-mkconfig -o /boot/grub/grub.cfg
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Rebuild initrd image
-mkinitcpio -p linux
+sudo mkinitcpio -p linux
