@@ -102,7 +102,7 @@ autocmd CompleteDone * pclose!
 cmap w!! w !sudo tee > /dev/null %
 
 " ################# Running Programs ##################
-autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%F<CR> 
-autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%F<CR>
+autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%<CR> 
+autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%<CR>
 autocmd FileType tex nnoremap <buffer> <Leader>r :LLPStartPreview<CR>
-autocmd FileType sh nnoremap <buffer> <Leader>r :!%F<CR>
+autocmd FileType sh nnoremap <buffer> <Leader>r :!./%<CR>
