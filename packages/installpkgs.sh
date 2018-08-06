@@ -1,7 +1,6 @@
 #!/bin/bash
 
 echo "Installing Packages..."
-echo "Base Directory: $basedir"
 
 chmod +x $basedir/packages/scripts/*
 

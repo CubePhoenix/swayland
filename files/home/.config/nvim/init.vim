@@ -16,6 +16,7 @@ Plug 'majutsushi/tagbar' " overview of variables, etc..
 Plug 'SirVer/ultisnips' " Snippets for autocompletion, ...
 Plug 'honza/vim-snippets' " Actual snippets for ultisnips
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' } " live preview for LaTeX
+Plug 'zchee/deoplete-clang' " Autocompletion for C/C++
 call plug#end()
 
 " Initialization

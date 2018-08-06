@@ -23,11 +23,12 @@ libxkbcommon
 udev
 pixman
 systemd
-sway
+@sway
 
 # Other
 python
 python-pip
+clang
 @python-neovim
 python-setuptools
 git
@@ -39,3 +40,11 @@ ninja
 termite
 ranger
 feh
+neovim
+
+# For a boot splash
+plymouth
+
+# ----Experimental features----
+# For a side menu
+conky

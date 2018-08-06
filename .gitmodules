@@ -1,0 +1,6 @@
+[submodule "files/home/.config/nvim/autoload"]
+	path = files/home/.config/nvim/autoload
+	url = https://github.com/Shougo/deoplete.nvim
+[submodule "files/home/.config/nvim/bundle/deoplete.nvim"]
+	path = files/home/.config/nvim/bundle/deoplete.nvim
+	url = https://github.com/Shougo/deoplete.nvim
