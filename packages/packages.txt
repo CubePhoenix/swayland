@@ -43,7 +43,7 @@ feh
 neovim
 
 # For a boot splash
-plymouth
+@plymouth
 
 # ----Experimental features----
 # For a side menu
