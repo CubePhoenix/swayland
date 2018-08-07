@@ -41,6 +41,7 @@ termite
 ranger
 feh
 neovim
+@nvimpager
 
 # For a boot splash
 @plymouth
