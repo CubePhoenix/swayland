@@ -10,7 +10,7 @@ while read line; do
 		$basedir/packages/scripts/`echo "$line.sh" | cut -d "@" -f 2`
 	elif [[ ! -z "$line" ]] && [[ "$line" != \#* ]]; then
         echo "Installing $line"
-		sudo pacman -S --noconfirm $line
+		sudo pacman -S --noconfirm --needed $line
 	fi
 
 done <$basedir/packages/packages.txt
