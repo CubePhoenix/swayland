@@ -1,0 +1,9 @@
+#
+# This file is parsed by pam_env module
+#
+# Syntax: simple "KEY=VAL" pairs on separate lines
+#
+# Added by swayland installer
+EDITOR=/usr/bin/nvim
+PAGER=/usr/bin/nvimpager
+RANGER_LOAD_DEFAULT_RC=FALSE

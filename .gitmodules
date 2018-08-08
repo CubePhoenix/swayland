@@ -49,3 +49,15 @@
 [submodule "files/home/.config/nvim/bundle/vim-fugitive"]
 	path = files/home/.config/nvim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "files/home/.config/nvimpager/bundle/syntastic"]
+	path = files/home/.config/nvimpager/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule "files/home/.config/nvimpager/bundle/vim-polyglot"]
+	path = files/home/.config/nvimpager/bundle/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule "files/home/.config/nvimpager/bundle/ultisnips"]
+	path = files/home/.config/nvimpager/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "files/home/.config/nvimpager/bundle/vim-snippets"]
+	path = files/home/.config/nvimpager/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets

@@ -8,6 +8,9 @@ while read line; do
 	if [[ "$line" == @* ]]; then
         echo "Unconventional install, calling install script."
 		$basedir/packages/scripts/`echo "$line.sh" | cut -d "@" -f 2`
+    elif [[ "$line" == \&* ]]; then
+        echo "AUR Install using yaourt"
+        yaourt -S --noconfirm --needed $line
 	elif [[ ! -z "$line" ]] && [[ "$line" != \#* ]]; then
         echo "Installing $line"
 		sudo pacman -S --noconfirm --needed $line

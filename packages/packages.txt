@@ -1,6 +1,6 @@
 # Sway Dependencies
 meson
-@wlroots
+&wlroots-git
 wayland
 wayland-protocols
 xorg-server-xwayland
@@ -38,13 +38,14 @@ ninja
 
 # Tools
 termite
-ranger
+&ranger-git
+w3m
 feh
 neovim
-@nvimpager
+&nvimpager-git
 
 # For a boot splash
-@plymouth
+&plymouth
 
 # ----Experimental features----
 # For a side menu
