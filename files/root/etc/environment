@@ -3,7 +3,11 @@
 #
 # Syntax: simple "KEY=VAL" pairs on separate lines
 #
-# Added by swayland installer
+######## Added by swayland installer #########
 EDITOR=/usr/bin/nvim
 PAGER=/usr/bin/nvimpager
 RANGER_LOAD_DEFAULT_RC=FALSE
+# Fix window bugs
+QT_QPA_PLATFORM=wayland
+QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+_JAVA_AWT_WM_NONREPARENTING=1

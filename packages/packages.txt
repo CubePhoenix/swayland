@@ -34,7 +34,11 @@ python-setuptools
 git
 yaourt
 go
+go-tools
+@gocode
 ninja
+ctags
+&gtk3-nocsd-git
 
 # Tools
 termite

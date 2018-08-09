@@ -103,7 +103,8 @@ autocmd CompleteDone * pclose!
 cmap w!! w !sudo tee > /dev/null %
 
 " ################# Running Programs ##################
-autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%<CR> 
-autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%<CR>
-autocmd FileType tex nnoremap <buffer> <Leader>r :LLPStartPreview<CR>
-autocmd FileType sh nnoremap <buffer> <Leader>r :!./%<CR>
+autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%<Enter>
+autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%<Enter>
+autocmd FileType tex nnoremap <buffer> <Leader>r :LLPStartPreview<Enter>
+autocmd FileType sh nnoremap <buffer> <Leader>r :!./%<Enter>
+autocmd FileType markdown nnoremap <buffer> <Leader>r :!termite<Space>-e="pandoc<Space>%<Space>-f<Space>markdown<Space>-t<Space>html<Space>|<Space>w3m<Space>-T<Space>text/html<CR>"
