@@ -1,0 +1,1 @@
+{"highlightColor":"#0078D7","highlightBorders":false,"bottomSeparator":false,"unfocusedTheme":"fade","toolbarOpacity":25,"omnibarOpacity":50,"maskColor":"#000000","accentColor":"#505050"}
