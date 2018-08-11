@@ -10,7 +10,7 @@ set $right l
 # Your preferred terminal emulator
 set $term termite
 # Your preferred application launcher
-        set $menu dmenu_run
+set $menu "~/.config/rofi/start.sh"
 
 ### Output configuration
 #
@@ -50,7 +50,7 @@ output * bg ~/.config/sway/assets/background.png fill
     bindsym $mod+d exec $menu
 
     # start file manager
-    bindsym $mod+Shift+f exec ranger
+    bindsym $mod+Shift+f exec termite --exec=ranger
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -185,6 +185,9 @@ bindsym $mod+r mode "resize"
 default_border none
 default_floating_border none
 
+# Fix border for termite
+for_window [class="termite"] border pixel -1
+
 # Set popups to be floating
 #for_window [window_role="pop-up"] floating enable
 
@@ -201,3 +204,4 @@ client.urgent           #ff5555 #900000 #ffffff #900000   #900000
 smart_gaps on
 gaps inner 8
 gaps outer 0
+gaps edge_gaps off

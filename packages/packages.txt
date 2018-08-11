@@ -36,21 +36,19 @@ yaourt
 go
 go-tools
 @gocode
+@go-sdl2
 ninja
 ctags
 &gtk3-nocsd-git
-
-# Tools
 termite
 &ranger-git
 w3m
 feh
 neovim
 &nvimpager-git
-
-# For a boot splash
+firefox
 &plymouth
-
-# ----Experimental features----
-# For a side menu
-conky
+fzf
+sdl2_ttf
+sdl2_image
+sdl2_gfx

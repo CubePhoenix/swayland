@@ -81,7 +81,7 @@ color15 = #eceff4
 #active_foreground = #e68080
 #active_background = #3f3f3f
 #padding = 2
-#border = #3f3f3f
+#border = rgba(46, 52, 64, 0.7) 
 #border_width = 0.5
 #roundness = 2.0
 

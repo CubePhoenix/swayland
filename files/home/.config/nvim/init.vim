@@ -44,7 +44,6 @@ set tabstop=4
 set softtabstop=0
 set expandtab
 set shiftwidth=4
-set noswapfile
 set nowrap
 let g:deoplete#sources#go#gocode_binary = $HOME.'/go/bin/gocode'
 
@@ -78,7 +77,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=grey guibg=grey
 
 " Autocompletion colors
 highlight Pmenu ctermbg=0 ctermfg=15
-highlight PmenuSel ctermbg=7 ctermfg=15
+highlight PmenuSel ctermbg=1 ctermfg=15
 highlight PmenuSbar ctermbg=8 ctermfg=15
 
 hi MatchParen cterm=bold ctermbg=None ctermfg=Red
@@ -107,4 +106,4 @@ autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%<Enter>
 autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%<Enter>
 autocmd FileType tex nnoremap <buffer> <Leader>r :LLPStartPreview<Enter>
 autocmd FileType sh nnoremap <buffer> <Leader>r :!./%<Enter>
-autocmd FileType markdown nnoremap <buffer> <Leader>r :!termite<Space>-e="pandoc<Space>%<Space>-f<Space>markdown<Space>-t<Space>html<Space>|<Space>w3m<Space>-T<Space>text/html<CR>"
+autocmd FileType markdown nnoremap <buffer> <Leader>r :!termite<Space>--exec='pandoc<Space>%<Space>-f<Space>markdown<Space>-t<Space>html<Space>|<Space>w3m<Space>-T<Space>text/html<CR>'
