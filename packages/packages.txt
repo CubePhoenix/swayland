@@ -52,3 +52,4 @@ fzf
 sdl2_ttf
 sdl2_image
 sdl2_gfx
+ttf-hack
