@@ -142,10 +142,28 @@ func (cont *Container) Draw(surf *sdl.Surface) (err error) {
 
     // let each item draw onto the surface
     for _, val := range cont.items {
-        err := val.Draw(csurface)
+        isurface, err := sdl.CreateRGBSurface(0, val.GetSize().x, val.GetSize().y, 32, 0, 0, 0, 0)
         if err != nil {
             return err
         }
+        
+        // also apply background color
+        isurface.FillRect(nil, background_color)
+
+        err = val.Draw(isurface)
+        if err != nil {
+            return err
+        }
+        
+        pos := val.GetPosition()
+        size := val.GetSize()
+
+        // draw the item surface onto the container surface
+        src_rect := sdl.Rect{0, 0, size.x, size.y}
+        dst_rect := sdl.Rect{pos.x, pos.y, pos.x + size.x, pos.y + size.y}
+        isurface.Blit(&src_rect, csurface, &dst_rect)
+
+        isurface.Free()
     }
 
     // draw the surface onto the surface of the parent
@@ -364,7 +382,19 @@ func (unic *Unicolor) SetSize(size Vector) {
 ##############################################################
 */
 
-func CreateWindow(position Vector, cont Container, bgcolor uint32, update func(*Container, *bool)) (err error) {
+type WindowHandler interface {
+    Init(*Container, *bool)
+    Update()
+    HandleEvent(sdl.Event)
+
+}
+
+func CreateWindow(position Vector, size Vector, bgcolor uint32, handler WindowHandler) (err error) {
+    // This variable will will determine wether the window is running or not
+    running := true
+
+    // the main container
+    cont := Container{Vector{0, 0}, size, make(map[string]Item)}
 
     // create an sdl window for the window struct instance
     window, err := sdl.CreateWindow("Sidebar", position.x, position.y,
@@ -384,22 +414,27 @@ func CreateWindow(position Vector, cont Container, bgcolor uint32, update func(*
     surface.FillRect(nil, bgcolor)
     background_color = bgcolor
 
+    // Initialize the handler
+    handler.Init(&cont, &running)
+
     // The main loop
-    running := true
 	for running {
-        update(&cont, &running)
-        cont.Draw(surface)
-        window.UpdateSurface()
 
         // Quit the program in case of exit event
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
-			switch event.(type) {
-			case *sdl.QuitEvent:
-				println("Quit")
-				running = false
-				break
-			}
-		}
+            switch event.(type) {
+            case *sdl.QuitEvent:
+                fmt.Println("Exit signal received. Quitting...")
+                running = false
+                break
+            default:
+                handler.HandleEvent(event)
+            }
+        }
+
+        handler.Update()
+        cont.Draw(surface)
+        window.UpdateSurface()
 	}
 
     return nil
@@ -415,7 +450,7 @@ func CreateWindow(position Vector, cont Container, bgcolor uint32, update func(*
 
 /*
 ####################################################################
-# Section main
+# Section: Main
 ####################################################################
 */
 
@@ -434,12 +469,21 @@ func main() {
         arg = "notspecified"
     }
 
+    var handler WindowHandler
+
+    // Determine the type of window
     switch arg {
     case "power":
-        PowerMenu()
+        handler = &PowerWindowHandler{}
+    case "run":
+        handler = &RunWindowHandler{}
+    case "desktop":
+        handler = &DesktopWindowHandler{}
     default:
-        PowerMenu()
+        handler = &PowerWindowHandler{}
     }
+
+    CreateWindow(Vector{0, 0}, Vector{display_size.x / 4, display_size.y}, DEF_BG_COLOR, handler)
 }
 
 /*
@@ -448,19 +492,84 @@ func main() {
 #################################################################
 */
 
-func PowerMenu() {
-    // the main container
-    cont := Container{Vector{0, 0}, Vector{display_size.x / 4, display_size.y}, make(map[string]Item)}
-    
-    // label to add to the container
-    label := Label{Vector{0, 0}, Vector{0, 0}, "Power Menu", 128, CENTER, CENTER, WHITE_COLOR, DEF_BG_COLOR, false}
-    cont.AddItem("Title", &label)
-    cont.ResizeItemToFraction("Title", FractionVector{1.0, 0.1})
+type PowerWindowHandler struct {
+    cont *Container
+    exit *bool
+}
 
-    err := CreateWindow(Vector{0, 0}, cont, DEF_BG_COLOR, func(cont *Container, exit *bool) {
-        return
+func (pwh *PowerWindowHandler) Init(c *Container, e *bool) {
+    pwh.cont = c
+    pwh.exit = e
+
+    pwh.cont.AddItem("title", &Label{
+        position: Vector{0, 0},
+        size: Vector{0, 0}, // will be resized later
+        text: "Power",
+        textsize: 128,
+        valign: CENTER,
+        halign: CENTER,
+        color: WHITE_COLOR,
+        bgcolor: DEF_BG_COLOR,
+        bold: false,
     })
-    if err != nil {
-        fmt.Println(err)
+
+    pwh.cont.ResizeItemToFraction("title", FractionVector{1.0, 0.1})
+}
+
+func (pwh *PowerWindowHandler) Update() {
+    return
+}
+
+func (pwh *PowerWindowHandler) HandleEvent(event sdl.Event) {
+    return
+}
+
+/*
+###################################################################
+# Section: Run
+###################################################################
+*/
+
+type RunWindowHandler struct {
+    cont *Container
+    exit *bool
+}
+
+func (rwh *RunWindowHandler) Init(c *Container, e *bool) {
+    rwh.cont = c
+    rwh.exit = e
+}
+
+func (rwh *RunWindowHandler) Update() {
+    return
+}
+
+func (rwh *RunWindowHandler) HandleEvent(event sdl.Event) {
+    switch event.(type) {
+        case *sdl.
     }
+}
+
+/*
+####################################################################
+# Section: Desktop
+####################################################################
+*/
+
+type DesktopWindowHandler struct {
+    cont *Container
+    exit *bool
+}
+
+func (dwh *DesktopWindowHandler) Init(c *Container, e *bool) {
+    dwh.cont = c
+    dwh.exit = e
+}
+
+func (dwh *DesktopWindowHandler) Update() {
+    return
+}
+
+func (dwh *DesktopWindowHandler) HandleEvent(event sdl.Event) {
+    return
 }
