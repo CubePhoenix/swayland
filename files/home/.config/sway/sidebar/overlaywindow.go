@@ -12,6 +12,8 @@ import (
     "fmt"
     "unsafe"
     "os"
+    "image"
+    "math"
 )
 
 /*
@@ -23,6 +25,9 @@ import (
 var display_size Vector
 
 var background_color uint32 
+
+// The path to the folder containing images of the current desktops
+const DESKTOP_IMAGES_PATH = "~/.config/sway/dimgs/"
 
 /*
 ##############################################################
@@ -53,6 +58,24 @@ const (
 func UInt32ToColor(ui uint32) (color sdl.Color) {
     bytes := (*[4]byte)(unsafe.Pointer(&ui))[:]
     return sdl.Color{bytes[2], bytes[1], bytes[0], bytes[3]}
+}
+
+func ImgTosurface(img image.Image) (surface *sdl.Surface, err error) {
+    // Credit to https://github.com/veandco/go-sdl2/issues/116#issuecomment-96056082
+    rgba := image.NewRGBA(img.Bounds())
+    w, h := img.Bounds().Max.X, img.Bounds().Max.Y
+    s, err := sdl.CreateRGBSurface(0, int32(w), int32(h), 32, 0, 0, 0, 0);
+    if err != nil {return s, err}
+    rgba.Pix = s.Pixels()
+
+    for y := 0; y < h; y+=1 {
+        for x := 0; x < w; x+=1 {
+            c := i.At(x, y)
+            rgba.Set(x, y, c)
+        }
+    }
+
+    return s, nil
 }
 
 /*
@@ -480,7 +503,7 @@ func main() {
     case "desktop":
         handler = &DesktopWindowHandler{}
     default:
-        handler = &PowerWindowHandler{}
+        handler = &RunWindowHandler{}
     }
 
     CreateWindow(Vector{0, 0}, Vector{display_size.x / 4, display_size.y}, DEF_BG_COLOR, handler)
@@ -538,6 +561,21 @@ type RunWindowHandler struct {
 func (rwh *RunWindowHandler) Init(c *Container, e *bool) {
     rwh.cont = c
     rwh.exit = e
+
+    rwh.cont.AddItem("title", &Label{
+        position: Vector{0, 0},
+        size: Vector{0, 0}, // will be resized later
+        text: "Run",
+        textsize: 128,
+        valign: CENTER,
+        halign: CENTER,
+        color: WHITE_COLOR,
+        bgcolor: DEF_BG_COLOR,
+        bold: false,
+    })
+
+    rwh.cont.ResizeItemToFraction("title", FractionVector{1.0, 0.1})
+
 }
 
 func (rwh *RunWindowHandler) Update() {
@@ -545,8 +583,12 @@ func (rwh *RunWindowHandler) Update() {
 }
 
 func (rwh *RunWindowHandler) HandleEvent(event sdl.Event) {
-    switch event.(type) {
-        case *sdl.
+    switch ty := event.(type) {
+    // Does not capture keyboard event (possibly because of window type)
+    // TODO find some other method to get keyboard input
+    case *sdl.KeyboardEvent:
+        fmt.Printf("[%d ms] Keyboard\ttype:%d\tsym:%c\tmodifiers:%d\tstate:%d\trepeat:%d\n",
+            ty.Timestamp, ty.Type, ty.Keysym.Sym, ty.Keysym.Mod, ty.State, ty.Repeat)
     }
 }
 
@@ -564,6 +606,92 @@ type DesktopWindowHandler struct {
 func (dwh *DesktopWindowHandler) Init(c *Container, e *bool) {
     dwh.cont = c
     dwh.exit = e
+
+    dwh.cont.AddItem("title", &Label{
+        position: Vector{0, 0},
+        size: Vector{0, 0}, // will be resized later
+        text: "Desktops",
+        textsize: 128,
+        valign: CENTER,
+        halign: CENTER,
+        color: WHITE_COLOR,
+        bgcolor: DEF_BG_COLOR,
+        bold: false,
+    })
+    dwh.cont.ResizeItemToFraction("title", FractionVector{1.0, 0.1})
+
+    // add desktop images
+    for i := 1; i <= 6; i++ {
+        var img_surface *sdl.Surface 
+
+        // get the surface
+        file, err := os.Open(DESKTOP_IMAGES_PATH + str(i) + ".png")
+        if err != nil{
+            // assuming there was no image or image is corrupted; display empty space
+            img_surface, err = GetEmptyDesktop()
+            if err != nil {
+                panic(err)
+            }
+        } else {
+            img, err := image.Decode(file)
+            if err != nil {
+                img_surface = GetEmptyDesktop()
+            } else {
+                img_surface, err = ImgTosurface(img)
+                if err != nil {
+                    continue
+                }
+            }
+
+        }
+
+        abs_pos := Vector{(i-1) % 2, int(math.Ceil(float64(i) / 2.0)) - 1}
+
+        resized_surface := nil // TODO: resize surface 
+
+        desktop_cont := &Container{
+            position: Vector{(display_size.x / 8) * abs_pos.x,
+                (display_size.x * 0.1) + (((display_size * 0.9) / 6) * abs_pos.y)},
+            size: Vector{display_size / 8, (display_size * 0.9) / 6},
+            items: map[string]Item{
+                "number": &Label{
+                    position: Vector{0, 0},
+                    size: Vector{0, 0}, // will be resized
+                    text: str(i),
+                    textsize: 64,
+                    valign: CENTER,
+                    halign: CENTER,
+                    color: WHITE_COLOR,
+                    bgcolor: DEF_BG_COLOR,
+                    bold: true,
+                },
+                "image": &Texture {
+                    position: Vector{0, 0}, // will be repositioned
+                    size: Vector{0, 0}, // will be resized
+                    texture: resized_surface,
+                }
+            }
+        }
+
+        // do resizing and repositioning of above mentioned items
+        desktop_cont.ResizeItemToFraction("number", FractionVector{0.2, 1})
+
+        desktop_cont.MoveItemToFraction("image", FractionVector{0.2, 0})
+        desktop_cont.ResizeItemToFraction("image", FractionVector{0.8, 1})
+
+        // add the container to the parent container
+        dwh.cont.AddItem("desktop-" + str(i), desktop_cont)
+    }
+}
+
+// gets you a surface the size of the current desktop, uniform colored
+func GetEmptyDesktop() (desktop *sdl.Surface, err error) {
+    desktop, err := sdl.CreateRGBSurface(0, display_size.x, display_size.y, 32, 0, 0, 0, 0)
+    if err != nil {
+        return desktop, err
+    }
+    desktop.FillRect(nil, uint32(0x20272e))
+    return desktop, err
 }
 
 func (dwh *DesktopWindowHandler) Update() {
