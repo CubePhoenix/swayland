@@ -7,12 +7,10 @@ Plug 'tpope/vim-surround' " Surround words with parenthesis, etc...
 Plug 'tpope/vim-fugitive' " Git integration for vim
 Plug 'bling/vim-airline' " Infobar
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'altercation/vim-colors-solarized' " Solarized palette
 Plug 'scrooloose/nerdcommenter' " Comment out code
 Plug 'jiangmiao/auto-pairs' " Adds parenthesis pair instead of just ( when typing
 Plug 'zchee/deoplete-go', {'do': 'make'} " Auto-completion for golang
 Plug 'zchee/deoplete-jedi' " Auto-completion for python
-Plug 'sheerun/vim-polyglot' " Language support for some languages
 Plug 'majutsushi/tagbar' " overview of variables, etc..
 Plug 'SirVer/ultisnips' " Snippets for autocompletion, ...
 Plug 'honza/vim-snippets' " Actual snippets for ultisnips
@@ -21,6 +19,8 @@ Plug 'zchee/deoplete-clang' " Autocompletion for C/C++
 Plug 'fatih/vim-go' " go-specific tools
 Plug 'w0rp/ale' " code linting
 Plug 'sebdah/vim-delve' " Integration of delve, a go debugger
+Plug 'Yggdroot/indentLine' " Indentation guidelines
+Plug 'airblade/vim-gitgutter' " Git diff in realtime
 call plug#end()
 
 " Initialization
@@ -63,7 +63,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden=1 " Show hidden files
 let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp'] " Ignore useless files
-        
+
 " Vim
 " noremap Y 0y$
 set hidden
@@ -94,9 +94,11 @@ highlight TagbarHighlight ctermfg=yellow
 
 highlight Visual ctermbg=darkgrey cterm=bold
 
-" Display indentation guides
-set list listchars=tab:|
-highlight SpecialKey ctermfg=darkgrey
+highlight SignColumn ctermbg=None
+
+" Indentation guides
+let g:indentLine_char = '|'
+let g:indentLine_color_term = 239
 
 " Autocompletion
 let g:deoplete#enable_at_startup = 1
@@ -125,8 +127,6 @@ autocmd FileType markdown nnoremap <buffer> <Leader>r :!termite<Space>--exec='pa
 " ### Go specific
 " Auto-Import dependencies on saving
 let g:go_fmt_command = "goimports"
-" Highlight variable occurences
-let g:go_auto_sameids = 1
 
 " Variable type info
 let g:go_auto_type_info = 1
@@ -145,3 +145,6 @@ let g:ale_sign_warning = '⚠'
 
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
+
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
