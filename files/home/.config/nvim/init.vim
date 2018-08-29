@@ -118,7 +118,7 @@ endfunction
 
 " ################# Running Programs ##################
 autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%<Enter>
-autocmd FileType go nnoremap <buffer> <Leader>R :DlvTest<Enter>
+autocmd FileType go nnoremap <buffer> <Leader>R :DlvDebug<Enter>
 autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%<Enter>
 autocmd FileType tex nnoremap <buffer> <Leader>r :LLPStartPreview<Enter>
 autocmd FileType sh nnoremap <buffer> <Leader>r :!./%<Enter>
