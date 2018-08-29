@@ -54,6 +54,7 @@ sdl2_image
 sdl2_gfx
 ttf-hack
 pulseaudio
+delve
 
 # Custom
 @sidebar

@@ -172,7 +172,7 @@ func (cont *Container) Draw(surf *sdl.Surface) (err error) {
         }
         
         // also apply background color
-        isurface.FillRect(nil, background_color)
+        isurface.FillRect(nil, uint32(0))
 
         err = val.Draw(isurface)
         if err != nil {

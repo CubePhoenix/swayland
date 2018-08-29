@@ -18,6 +18,9 @@ Plug 'SirVer/ultisnips' " Snippets for autocompletion, ...
 Plug 'honza/vim-snippets' " Actual snippets for ultisnips
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' } " live preview for LaTeX
 Plug 'zchee/deoplete-clang' " Autocompletion for C/C++
+Plug 'fatih/vim-go' " go-specific tools
+Plug 'w0rp/ale' " code linting
+Plug 'sebdah/vim-delve' " Integration of delve, a go debugger
 call plug#end()
 
 " Initialization
@@ -42,7 +45,7 @@ set nohlsearch
 set smartcase
 set tabstop=4
 set softtabstop=0
-set expandtab
+set noexpandtab
 set shiftwidth=4
 set nowrap
 let g:deoplete#sources#go#gocode_binary = $HOME.'/go/bin/gocode'
@@ -89,21 +92,56 @@ let g:airline_powerline_fonts = 1
 " Make Tagbar-Highlighting look nicer
 highlight TagbarHighlight ctermfg=yellow
 
-" Ultisnips
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+highlight Visual ctermbg=darkgrey cterm=bold
+
+" Display indentation guides
+set list listchars=tab:|
+highlight SpecialKey ctermfg=darkgrey
 
 " Autocompletion
 let g:deoplete#enable_at_startup = 1
-" Close autocompletion preview after selected
-autocmd CompleteDone * pclose!
+" No autocompletion preview
+set completeopt-=preview
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
+" Disable deoplete when in multi cursor mode
+function! Multiple_cursors_before()
+    let b:deoplete_disable_auto_complete = 1
+endfunction
+
+function! Multiple_cursors_after()
+    let b:deoplete_disable_auto_complete = 0
+endfunction
+
 " ################# Running Programs ##################
 autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%<Enter>
+autocmd FileType go nnoremap <buffer> <Leader>R :DlvTest<Enter>
 autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%<Enter>
 autocmd FileType tex nnoremap <buffer> <Leader>r :LLPStartPreview<Enter>
 autocmd FileType sh nnoremap <buffer> <Leader>r :!./%<Enter>
 autocmd FileType markdown nnoremap <buffer> <Leader>r :!termite<Space>--exec='pandoc<Space>%<Space>-f<Space>markdown<Space>-t<Space>html<Space>|<Space>w3m<Space>-T<Space>text/html<CR>'
+
+" ### Go specific
+" Auto-Import dependencies on saving
+let g:go_fmt_command = "goimports"
+" Highlight variable occurences
+let g:go_auto_sameids = 1
+
+" Variable type info
+let g:go_auto_type_info = 1
+
+" breakpoints
+autocmd FileType go nnoremap <buffer> <F9> :DlvToggleBreakpoint<Enter>
+autocmd FileType go nnoremap <buffer> <F10> :DlvToggleTracepoint<Enter>
+
+" Also remember: K for more info
+
+" ### Ale code linting
+"
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
