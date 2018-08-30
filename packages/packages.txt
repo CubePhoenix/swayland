@@ -56,5 +56,12 @@ ttf-hack
 pulseaudio
 delve
 
+# Screenshots
+base-devel
+qt5-base
+qt5-tools
+qt5-svg
+@flameshot
+
 # Custom
 @sidebar
