@@ -159,14 +159,6 @@ func (cont *Container) ResizeItemToFraction(item string, size FractionVector) {
 // draw a container
 // The container will let each item draw onto its own surface and then draw that onto the main surface
 func (cont *Container) Draw(surf *sdl.Surface) (err error) {
-	csurface, err := sdl.CreateRGBSurface(0, int32(cont.size.x), int32(cont.size.y), 32, 0, 0, 0, 0)
-	if err != nil {
-		return err
-	}
-	defer csurface.Free()
-
-	// color the surface according to background color
-	csurface.FillRect(nil, background_color)
 
 	// let each item draw onto the surface
 	for _, val := range cont.items {
@@ -176,7 +168,7 @@ func (cont *Container) Draw(surf *sdl.Surface) (err error) {
 		}
 
 		// also apply background color
-		isurface.FillRect(nil, uint32(0))
+		isurface.FillRect(nil, background_color)
 
 		err = val.Draw(isurface)
 		if err != nil {
@@ -189,15 +181,10 @@ func (cont *Container) Draw(surf *sdl.Surface) (err error) {
 		// draw the item surface onto the container surface
 		src_rect := sdl.Rect{X: 0, Y: 0, W: size.x, H: size.y}
 		dst_rect := sdl.Rect{X: pos.x, Y: pos.y, W: pos.x + size.x, H: pos.y + size.y}
-		isurface.Blit(&src_rect, csurface, &dst_rect)
+		isurface.Blit(&src_rect, surf, &dst_rect)
 
 		isurface.Free()
 	}
-
-	// draw the surface onto the surface of the parent
-	src_rect := sdl.Rect{X: 0, Y: 0, W: int32(cont.size.x), H: int32(cont.size.y)}
-	dst_rect := sdl.Rect{X: int32(cont.position.x), Y: int32(cont.position.y), W: int32(cont.position.x + cont.size.x), H: int32(cont.position.y + cont.size.y)}
-	csurface.Blit(&src_rect, surf, &dst_rect)
 
 	return nil
 }
@@ -341,7 +328,7 @@ type Texture struct {
 // Draw the item onto the parent surface
 func (tex *Texture) Draw(surf *sdl.Surface) (err error) {
 	src_rect := sdl.Rect{X: 0, Y: 0, W: tex.size.x, H: tex.size.y}
-	dst_rect := sdl.Rect{X: tex.position.x, Y: tex.position.y, W: tex.position.x + tex.size.x, H: tex.position.y + tex.size.y}
+	dst_rect := sdl.Rect{X: 0, Y: 0, W: tex.size.x, H: tex.size.y}
 	tex.texture.Blit(&src_rect, surf, &dst_rect)
 
 	return nil
@@ -379,7 +366,7 @@ type Unicolor struct {
 
 // Draw the item onto the parent surface
 func (unic *Unicolor) Draw(surf *sdl.Surface) (err error) {
-	rect := sdl.Rect{X: unic.position.x, Y: unic.position.y, W: unic.position.x + unic.size.x, H: unic.position.y + unic.size.y}
+	rect := sdl.Rect{X: 0, Y: 0, W: unic.size.x, H: unic.size.y}
 	return surf.FillRect(&rect, unic.color)
 }
 
@@ -624,6 +611,7 @@ func (dwh *DesktopWindowHandler) Init(c *Container, e *bool) {
 	// add desktop images
 	for i := 1; i <= 6; i++ {
 		var img_surface *sdl.Surface
+		defer img_surface.Free()
 
 		// get the surface
 		file, err := os.Open(DESKTOP_IMAGES_PATH + strconv.Itoa(i) + ".png")
@@ -667,7 +655,7 @@ func (dwh *DesktopWindowHandler) Init(c *Container, e *bool) {
 				"number": &Label{
 					position: Vector{0, 0},
 					size:     Vector{0, 0}, // will be resized
-					text:     string(i),
+					text:     strconv.Itoa(i),
 					textsize: 64,
 					valign:   CENTER,
 					halign:   CENTER,
@@ -697,7 +685,7 @@ func (dwh *DesktopWindowHandler) Init(c *Container, e *bool) {
 	}
 }
 
-// gets you a surface the size of the current desktop, uniform colored
+// Gets you a surface the size of the current desktop, uniform colored
 func GetEmptyDesktop() (desktop *sdl.Surface, err error) {
 	desktop, err = sdl.CreateRGBSurface(0, display_size.x, display_size.y, 32, 0, 0, 0, 0)
 	if err != nil {
