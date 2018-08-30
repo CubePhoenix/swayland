@@ -116,6 +116,17 @@ function! Multiple_cursors_after()
     let b:deoplete_disable_auto_complete = 0
 endfunction
 
+" Faster switching of split window focus
+nnoremap <silent><Leader><Left> <c-w>h 
+nnoremap <silent><Leader><Right> <c-w>l 
+nnoremap <silent><Leader><Up> <c-w>k
+nnoremap <silent><Leader><Down> <c-w>j
+
+nnoremap <silent><Leader>h <c-w>h 
+nnoremap <silent><Leader>l <c-w>l 
+nnoremap <silent><Leader>k <c-w>k
+nnoremap <silent><Leader>j <c-w>j
+
 " ################# Running Programs ##################
 autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%<Enter>
 autocmd FileType go nnoremap <buffer> <Leader>R :DlvDebug<Enter>
