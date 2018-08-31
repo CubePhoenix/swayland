@@ -9,14 +9,18 @@ package main
 import (
 	"bufio"
 	"crypto/md5"
+	"encoding/csv"
+	"encoding/hex"
 	"fmt"
 	"image"
 	"io"
-	"io/ioutil"
 	"math"
 	"os"
+	"os/exec"
+	"path/filepath"
 	"regexp"
 	"strconv"
+	"strings"
 	"unsafe"
 
 	"github.com/veandco/go-sdl2/sdl"
@@ -478,28 +482,30 @@ func main() {
 	Initialize()
 
 	// 0 is the program itself, 1 is the first argument
-	var arg string
-	if len(os.Args) > 1 {
-		arg = os.Args[1]
-	} else {
-		arg = "notspecified"
-	}
+	//var arg string
+	//if len(os.Args) > 1 {
+	//arg = os.Args[1]
+	//} else {
+	//arg = "notspecified"
+	//}
 
-	var handler WindowHandler
+	//var handler WindowHandler
 
-	// Determine the type of window
-	switch arg {
-	case "power":
-		handler = &PowerWindowHandler{}
-	case "run":
-		handler = &RunWindowHandler{}
-	case "desktop":
-		handler = &DesktopWindowHandler{}
-	default:
-		handler = &DesktopWindowHandler{}
-	}
+	//// Determine the type of window
+	//switch arg {
+	//case "power":
+	//handler = &PowerWindowHandler{}
+	//case "run":
+	//handler = &RunWindowHandler{}
+	//case "desktop":
+	//handler = &DesktopWindowHandler{}
+	//default:
+	//handler = &DesktopWindowHandler{}
+	//}
 
-	CreateWindow(Vector{0, 0}, Vector{display_size.x / 4, display_size.y}, DEF_BG_COLOR, handler)
+	//CreateWindow(Vector{0, 0}, Vector{display_size.x / 4, display_size.y}, DEF_BG_COLOR, handler)
+
+	fmt.Println(ParseDesktopFile("/usr/share/applications/firefox.desktop"))
 }
 
 /*
@@ -713,16 +719,18 @@ func (dwh *DesktopWindowHandler) HandleEvent(event sdl.Event) {
 ######################################################################################################
 */
 
-var desktop_file_paths = [...]string{"/usr/local/share/applications/", "/usr/share/applications/", "~/.local/share/applications/"}
+var desktop_file_paths = []string{"/usr/local/share/applications/", "/usr/share/applications/", "~/.local/share/applications/"}
 
 func ParseDesktopFile(file string) (entries map[string]string, err error) {
+	entries = make(map[string]string)
+
 	lines, err := readFile(file)
 	if err != nil {
 		return entries, err
 	}
 
 	for _, line := range lines {
-		matched, err := regexp.MatchString("([a-zA-Z]+)=(*.)", line)
+		matched, err := regexp.MatchString("([a-zA-Z]+)=(.*)", line)
 		if err != nil {
 			return entries, err
 		}
@@ -737,12 +745,13 @@ func ParseDesktopFile(file string) (entries map[string]string, err error) {
 			}
 
 			// Searches for a sequence of characters with = as a prefix
-			value_regex, err := regexp.Compile("(?<=\\=)*.")
+			value_regex, err := regexp.Compile("=(.*)")
 			if err != nil {
 				return entries, err
 			}
 
-			entries[key_regex.FindString(line)] = value_regex.FindString(line)
+			// make entry but leave out the '='
+			entries[key_regex.FindString(line)] = value_regex.FindString(line)[1:]
 
 		}
 	}
@@ -770,38 +779,97 @@ func readFile(filepath string) (lines []string, err error) {
 }
 
 func getFileHashes(dir_paths []string) (file_hashes map[string]string, err error) {
+	file_hashes = make(map[string]string)
+
 	for _, dir_path := range dir_paths {
 
-		// get every file from this directory
-		files, err := ioutil.ReadDir(dir_path)
-		if err != nil {
-			return file_hashes, err
-		}
+		filepath.Walk(dir_path, func(path string, info os.FileInfo, err error) error {
 
-		for _, file := range files {
+			// for some reason this function gets called sometimes with no fileinfo
+			// so we have to check for that
+			if info == nil {
+				return nil
+			}
 
-			fileio, err := os.Open(file.Name())
+			// do not process folders
+			if info.IsDir() {
+				return nil
+			}
+
+			file, err := os.Open(path)
 			if err != nil {
-				return file_hashes, err
+				return err
 			}
 
 			// calculate the md5 hash of file
 			hash := md5.New()
-			if _, err := io.Copy(hash, fileio); err != nil {
-				return file_hashes, err
+			if _, err := io.Copy(hash, file); err != nil {
+				return err
 			}
 
 			// Close the file
-			err = fileio.Close()
+			err = file.Close()
 			if err != nil {
-				return file_hashes, err
+				return err
 			}
 
 			// assign the file path to the hash
-			file_hashes[string(hash.Sum(nil))] = file.Name()
+			file_hashes[hex.EncodeToString(hash.Sum(nil))] = path
 
-		}
+			return nil
+		})
 	}
 
 	return file_hashes, nil
+}
+
+func checkEntryMatch(key string, value string, parsedfile map[string]string) (matches bool) {
+	val, ok := parsedfile[key]
+
+	if ok {
+		// Check match ignoring case
+		if strings.EqualFold(val, value) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func launchDesktopFile(path string) (err error) {
+	return exec.Command("gtk-launch", path).Run()
+}
+
+/*
+######################################################################################################
+######################################################################################################
+## Chapter: CSV Data Processing																		##
+######################################################################################################
+######################################################################################################
+*/
+
+const CONFIG_FILE_PATH = "~/.config/sway/sidebar/data.csv"
+
+func readDataFile() (data [][]string, err error) {
+
+	// open or create file in read/write mode
+	file, err := os.OpenFile(CONFIG_FILE_PATH, os.O_RDWR|os.O_CREATE, 666)
+	if err != nil {
+		return data, err
+	}
+
+	reader := csv.NewReader(file)
+
+	return reader.ReadAll()
+}
+
+func validateEntries() (err error) {
+	data, err := readDataFile()
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(data)
+
+	return nil
 }
