@@ -7,10 +7,15 @@ package main
 */
 
 import (
+	"bufio"
+	"crypto/md5"
 	"fmt"
 	"image"
+	"io"
+	"io/ioutil"
 	"math"
 	"os"
+	"regexp"
 	"strconv"
 	"unsafe"
 
@@ -679,9 +684,6 @@ func (dwh *DesktopWindowHandler) Init(c *Container, e *bool) {
 
 		// add the container to the parent container
 		dwh.cont.AddItem("desktop-"+strconv.Itoa(i), desktop_cont)
-		fmt.Println("\t\t\t\t\t\t\t\t\t Added desktop: " + strconv.Itoa(i))
-
-		fmt.Println("\t\t\t\t\t\t\t\t\t Desktp contents: ", dwh.cont.GetItem("desktop-"+strconv.Itoa(i)))
 	}
 }
 
@@ -701,4 +703,105 @@ func (dwh *DesktopWindowHandler) Update() {
 
 func (dwh *DesktopWindowHandler) HandleEvent(event sdl.Event) {
 	return
+}
+
+/*
+######################################################################################################
+######################################################################################################
+## Chapter: Desktop File Parser                                                                     ##
+######################################################################################################
+######################################################################################################
+*/
+
+var desktop_file_paths = [...]string{"/usr/local/share/applications/", "/usr/share/applications/", "~/.local/share/applications/"}
+
+func ParseDesktopFile(file string) (entries map[string]string, err error) {
+	lines, err := readFile(file)
+	if err != nil {
+		return entries, err
+	}
+
+	for _, line := range lines {
+		matched, err := regexp.MatchString("([a-zA-Z]+)=(*.)", line)
+		if err != nil {
+			return entries, err
+		}
+
+		// if the line is a valid entry
+		if matched {
+
+			// Searches for a sequence of letters with length >= 1
+			key_regex, err := regexp.Compile("^[a-zA-Z]+")
+			if err != nil {
+				return entries, err
+			}
+
+			// Searches for a sequence of characters with = as a prefix
+			value_regex, err := regexp.Compile("(?<=\\=)*.")
+			if err != nil {
+				return entries, err
+			}
+
+			entries[key_regex.FindString(line)] = value_regex.FindString(line)
+
+		}
+	}
+
+	return entries, nil
+}
+
+func readFile(filepath string) (lines []string, err error) {
+	file, err := os.Open(filepath)
+	if err != nil {
+		return lines, err
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		return lines, err
+	}
+
+	return lines, nil
+}
+
+func getFileHashes(dir_paths []string) (file_hashes map[string]string, err error) {
+	for _, dir_path := range dir_paths {
+
+		// get every file from this directory
+		files, err := ioutil.ReadDir(dir_path)
+		if err != nil {
+			return file_hashes, err
+		}
+
+		for _, file := range files {
+
+			fileio, err := os.Open(file.Name())
+			if err != nil {
+				return file_hashes, err
+			}
+
+			// calculate the md5 hash of file
+			hash := md5.New()
+			if _, err := io.Copy(hash, fileio); err != nil {
+				return file_hashes, err
+			}
+
+			// Close the file
+			err = fileio.Close()
+			if err != nil {
+				return file_hashes, err
+			}
+
+			// assign the file path to the hash
+			file_hashes[string(hash.Sum(nil))] = file.Name()
+
+		}
+	}
+
+	return file_hashes, nil
 }
