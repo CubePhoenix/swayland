@@ -9,6 +9,7 @@ package main
 import (
 	"bufio"
 	"crypto/md5"
+	"encoding/binary"
 	"encoding/csv"
 	"encoding/hex"
 	"errors"
@@ -68,6 +69,17 @@ const (
 	BOTTOM Align = 2
 )
 
+// also wants to be an enum when older
+type TextSize int
+
+const (
+	TITLE    TextSize = 128
+	SUBTITLE TextSize = 64
+	HEADER   TextSize = 32
+	TEXT     TextSize = 16
+	SUBTEXT  TextSize = 14
+)
+
 func UInt32ToColor(ui uint32) (color sdl.Color) {
 	bytes := (*[4]byte)(unsafe.Pointer(&ui))[:]
 	return sdl.Color{R: bytes[2], G: bytes[1], B: bytes[0], A: bytes[3]}
@@ -91,6 +103,35 @@ func ImgTosurface(img image.Image) (surface *sdl.Surface, err error) {
 	}
 
 	return s, nil
+}
+
+func resizeSurface(surf *sdl.Surface, newsize Vector) (resizedsurf *sdl.Surface, err error) {
+	resizedsurf, err = sdl.CreateRGBSurface(0, newsize.x, newsize.y, 32, 0, 0, 0, 0)
+	if err != nil {
+		return resizedsurf, err
+	}
+
+	rgba := image.NewRGBA(image.Rect(0, 0, int(newsize.x), int(newsize.y)))
+	rgba.Pix = resizedsurf.Pixels()
+
+	pixels := surf.Pixels()
+
+	// the factor from newscale to oldscale
+	scalex := float32(surf.W) / float32(newsize.x)
+	scaley := float32(surf.H) / float32(newsize.y)
+
+	for y := int32(0); y < newsize.y; y += 1 {
+		for x := int32(0); x < newsize.x; x += 1 {
+			// the byte index of the color currently looking at
+			//		*					line 											  *  			 pixel in line (x)					*
+			index := int32((float32(surf.BytesPerPixel()) * (float32(surf.W*y) * scaley)) + (float32(int32(surf.BytesPerPixel())*x) * scalex))
+
+			// set the pixel using magic
+			rgba.Set(int(x), int(y), UInt32ToColor(binary.BigEndian.Uint32(pixels[index:index+4])))
+		}
+	}
+
+	return resizedsurf, err
 }
 
 /*
@@ -478,40 +519,42 @@ func CreateWindow(position Vector, size Vector, bgcolor uint32, handler WindowHa
 const DEF_BG_COLOR uint32 = 0x10171e
 const WHITE_COLOR uint32 = 0xffffff
 
+const SCREEN_FRACTION = 4
+
 func main() {
 	// initialize packages
 	Initialize()
 
 	// 0 is the program itself, 1 is the first argument
-	//var arg string
-	//if len(os.Args) > 1 {
-	//arg = os.Args[1]
-	//} else {
-	//arg = "notspecified"
-	//}
-
-	//var handler WindowHandler
-
-	//// Determine the type of window
-	//switch arg {
-	//case "power":
-	//handler = &PowerWindowHandler{}
-	//case "run":
-	//handler = &RunWindowHandler{}
-	//case "desktop":
-	//handler = &DesktopWindowHandler{}
-	//default:
-	//handler = &DesktopWindowHandler{}
-	//}
-
-	//CreateWindow(Vector{0, 0}, Vector{display_size.x / 4, display_size.y}, DEF_BG_COLOR, handler)
-
-	path, err := getDataFilePath()
-	if err != nil {
-		panic(err)
+	var arg string
+	if len(os.Args) > 1 {
+		arg = os.Args[1]
+	} else {
+		arg = "notspecified"
 	}
 
-	fmt.Println(incrementDataFileEntry(path, "/usr/share/applications/firefox.desktop"))
+	var handler WindowHandler
+
+	// Determine the type of window
+	switch arg {
+	case "power":
+		handler = &PowerWindowHandler{}
+	case "run":
+		handler = &RunWindowHandler{}
+	case "desktop":
+		handler = &DesktopWindowHandler{}
+	default:
+		handler = &RunWindowHandler{}
+	}
+
+	CreateWindow(Vector{0, 0}, Vector{display_size.x / SCREEN_FRACTION, display_size.y}, DEF_BG_COLOR, handler)
+
+	//path, err := getDataFilePath()
+	//if err != nil {
+	//panic(err)
+	//}
+
+	//fmt.Println(incrementDataFileEntry(path, "/usr/share/applications/firefox.desktop"))
 }
 
 /*
@@ -581,6 +624,14 @@ func (rwh *RunWindowHandler) Init(c *Container, e *bool) {
 
 	rwh.cont.ResizeItemToFraction("title", FractionVector{1.0, 0.1})
 
+	program, err := rwh.getProgramInfoCont("/usr/share/applications/nvim.desktop")
+	if err != nil {
+		panic(err)
+	}
+
+	rwh.cont.AddItem("program", program)
+	rwh.cont.MoveItemToFraction("program", FractionVector{0, 0.1})
+
 }
 
 func (rwh *RunWindowHandler) Update() {
@@ -595,6 +646,91 @@ func (rwh *RunWindowHandler) HandleEvent(event sdl.Event) {
 		fmt.Printf("[%d ms] Keyboard\ttype:%d\tsym:%c\tmodifiers:%d\tstate:%d\trepeat:%d\n",
 			ty.Timestamp, ty.Type, ty.Keysym.Sym, ty.Keysym.Mod, ty.State, ty.Repeat)
 	}
+}
+
+// Gets a container containing info about a .desktop file
+func (rwh *RunWindowHandler) getProgramInfoCont(path string) (cont *Container, err error) {
+	cont = &Container{Vector{0, 0}, Vector{rwh.cont.size.x, rwh.cont.size.y / 16}, make(map[string]Item)}
+
+	info, err := parseDesktopFile(path)
+	if err != nil {
+		return cont, err
+	}
+
+	// separator bar
+	cont.AddItem("bar", &Unicolor{
+		position: Vector{0, 0},
+		size:     Vector{cont.size.x, 4},
+		color:    0x20272e,
+	})
+
+	iconsize := rwh.cont.size.y / 18
+
+	var icon *sdl.Surface
+
+	default_icon := func() {
+		icon, err = sdl.CreateRGBSurface(0, iconsize, iconsize, 32, 0, 0, 0, 0)
+		icon.FillRect(nil, DEF_BG_COLOR)
+	}
+
+	// open the icon file. If anything fails,
+	// use an empty surface instead
+	iconfile, err := os.Open(info["Icon"])
+	if err != nil {
+		default_icon()
+	} else {
+		img, _, err := image.Decode(iconfile)
+		if err != nil {
+			default_icon()
+		} else {
+			iconsurf, err := ImgTosurface(img)
+			if err != nil {
+				default_icon()
+			} else {
+				icon, err = resizeSurface(iconsurf, Vector{iconsize, iconsize})
+				if err != nil {
+					default_icon()
+				}
+			}
+		}
+	}
+
+	// icon of the program
+	cont.AddItem("icon", &Texture{
+		position: Vector{0, 8},
+		size:     Vector{iconsize, iconsize},
+		texture:  icon,
+	})
+
+	// name of the program
+	cont.AddItem("title", &Label{
+		position: Vector{iconsize + 8, 8},
+		size:     Vector{0, 0}, // will be resized later
+		text:     info["Name"],
+		textsize: 16,
+		valign:   TOP,
+		halign:   LEFT,
+		color:    WHITE_COLOR,
+		bgcolor:  DEF_BG_COLOR,
+		bold:     false,
+	})
+	cont.ResizeItemToFraction("title", FractionVector{float32(16) / float32(18), 0.5})
+
+	// description of the program
+	cont.AddItem("description", &Label{
+		position: Vector{iconsize + 8, (cont.size.y / 2) + 8},
+		size:     Vector{0, 0}, // will be resized later
+		text:     info["Comment"],
+		textsize: 14,
+		valign:   CENTER,
+		halign:   LEFT,
+		color:    0xa0a1a7,
+		bgcolor:  DEF_BG_COLOR,
+		bold:     false,
+	})
+	cont.ResizeItemToFraction("description", FractionVector{float32(16) / float32(18), 0.4})
+
+	return cont, err
 }
 
 /*
@@ -656,13 +792,10 @@ func (dwh *DesktopWindowHandler) Init(c *Container, e *bool) {
 
 		abs_pos := Vector{int32((i - 1) % 2), int32(math.Ceil(float64(i)/2.0)) - 1}
 
-		var resized_surface *sdl.Surface
-
-		resizefactor := float32(img_surface.W) / float32(display_size.x/10)
-
-		src_rect := sdl.Rect{X: 0, Y: 0, W: img_surface.W, H: img_surface.H}
-		dst_rect := sdl.Rect{X: 0, Y: 0, W: int32(float32(img_surface.W) / resizefactor), H: int32(float32(img_surface.H) / resizefactor)}
-		img_surface.BlitScaled(&src_rect, resized_surface, &dst_rect)
+		resized_surface, err := resizeSurface(img_surface, Vector{display_size.x / 12, display_size.y / 12})
+		if err != nil {
+			panic(err)
+		}
 
 		desktop_cont := &Container{
 			position: Vector{(display_size.x / 8) * abs_pos.x,
@@ -674,7 +807,7 @@ func (dwh *DesktopWindowHandler) Init(c *Container, e *bool) {
 					size:     Vector{0, 0}, // will be resized
 					text:     strconv.Itoa(i),
 					textsize: 64,
-					valign:   CENTER,
+					valign:   TOP,
 					halign:   CENTER,
 					color:    WHITE_COLOR,
 					bgcolor:  DEF_BG_COLOR,
