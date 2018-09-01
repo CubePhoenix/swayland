@@ -11,6 +11,7 @@ import (
 	"crypto/md5"
 	"encoding/csv"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"image"
 	"io"
@@ -505,7 +506,12 @@ func main() {
 
 	//CreateWindow(Vector{0, 0}, Vector{display_size.x / 4, display_size.y}, DEF_BG_COLOR, handler)
 
-	fmt.Println(ParseDesktopFile("/usr/share/applications/firefox.desktop"))
+	path, err := getDataFilePath()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(incrementDataFileEntry(path, "/usr/share/applications/firefox.desktop"))
 }
 
 /*
@@ -721,7 +727,7 @@ func (dwh *DesktopWindowHandler) HandleEvent(event sdl.Event) {
 
 var desktop_file_paths = []string{"/usr/local/share/applications/", "/usr/share/applications/", "~/.local/share/applications/"}
 
-func ParseDesktopFile(file string) (entries map[string]string, err error) {
+func parseDesktopFile(file string) (entries map[string]string, err error) {
 	entries = make(map[string]string)
 
 	lines, err := readFile(file)
@@ -823,6 +829,34 @@ func getFileHashes(dir_paths []string) (file_hashes map[string]string, err error
 	return file_hashes, nil
 }
 
+// Gets all the files in a list of directories as keys in a map
+func getFiles(dir_paths []string) (file_paths map[string]struct{}, err error) {
+	file_paths = make(map[string]struct{})
+
+	for _, dir_path := range dir_paths {
+		filepath.Walk(dir_path, func(path string, info os.FileInfo, err error) error {
+
+			// sometimes this function gets called with no fileinfo
+			// so we have to ignore these calls
+			if info == nil {
+				return err
+			}
+
+			// also ignore folders
+			if info.IsDir() {
+				return err
+			}
+
+			// assign an empty struct to the key
+			file_paths[path] = struct{}{}
+
+			return err
+		})
+	}
+
+	return file_paths, err
+}
+
 func checkEntryMatch(key string, value string, parsedfile map[string]string) (matches bool) {
 	val, ok := parsedfile[key]
 
@@ -848,28 +882,130 @@ func launchDesktopFile(path string) (err error) {
 ######################################################################################################
 */
 
-const CONFIG_FILE_PATH = "~/.config/sway/sidebar/data.csv"
+// gets the path to the data file
+func getDataFilePath() (path string, err error) {
+	// The value regexp
+	value_regex, err := regexp.Compile("=(.*)")
+	if err != nil {
+		return "", err
+	}
 
-func readDataFile() (data [][]string, err error) {
+	// the variable regexp
+	var_regex, err := regexp.Compile("HOME=(.*)")
+	if err != nil {
+		return "", err
+	}
 
-	// open or create file in read/write mode
-	file, err := os.OpenFile(CONFIG_FILE_PATH, os.O_RDWR|os.O_CREATE, 666)
+	for _, line := range os.Environ() {
+		// if its the entry we search for ($HOME)
+		if var_regex.MatchString(line) {
+			// return the value of the env variable + our config file location
+			return value_regex.FindString(line)[1:] + "/sway/sidebar/data.csv", err
+		}
+	}
+
+	return "", errors.New("Enviroment variable $HOME not found")
+}
+
+// Reads out the data csv saved under CONFIG_FILE_PATH
+func readDataFile(path string) (data map[string][]string, err error) {
+	data = make(map[string][]string)
+
+	// open or create file in readonly mode
+	file, err := os.OpenFile(path, os.O_RDONLY|os.O_CREATE, 0666)
 	if err != nil {
 		return data, err
 	}
 
 	reader := csv.NewReader(file)
 
-	return reader.ReadAll()
+	raw_data, err := reader.ReadAll()
+	if err != nil {
+		return data, err
+	}
+
+	// make the first entry of each line the line's key
+	for _, line := range raw_data {
+		data[line[0]] = line[1:]
+	}
+
+	return data, err
 }
 
-func validateEntries() (err error) {
-	data, err := readDataFile()
+// overwrites the current datafile by replacing it
+func writeDataFile(path string, data map[string][]string) (err error) {
+	// delete the old data file
+	deleteDataFile(path)
+
+	// open or create file in writeonly mode
+	file, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		return err
 	}
 
-	fmt.Println(data)
+	writer := csv.NewWriter(file)
 
-	return nil
+	var records [][]string
+
+	// reformat data to two dimensional array
+	for key, val := range data {
+		records = append(records, append([]string{key}, val...))
+	}
+
+	return writer.WriteAll(records)
+}
+
+// increments the use counter of a entry in the data file
+func incrementDataFileEntry(path string, key string) (err error) {
+	// get the data in a validated form
+	data, err := getValidatedData(path)
+	if err != nil {
+		return err
+	}
+
+	i, err := strconv.Atoi(data[key][0])
+	if err != nil {
+		return err
+	}
+
+	data[key] = []string{strconv.Itoa(i + 1)}
+
+	return writeDataFile(path, data)
+}
+
+// removes the current data file.
+func deleteDataFile(path string) (err error) {
+	return os.Remove(path)
+}
+
+// Same as readDataFile(), but validates entries first
+func getValidatedData(path string) (data map[string][]string, err error) {
+	data, err = readDataFile(path)
+	if err != nil {
+		return data, err
+	}
+
+	files, err := getFiles(desktop_file_paths)
+	if err != nil {
+		return data, err
+	}
+
+	// add new desktop files
+	for path, _ := range files {
+		// if the desktop file is missing in data
+		if _, ok := data[path]; !ok {
+			data[path] = []string{"0"}
+		}
+	}
+
+	// remove no longer existent desktop files
+	for path, _ := range data {
+		// if there is no such file
+		if _, ok := files[path]; !ok {
+			delete(data, path)
+		}
+	}
+
+	// return validated data variable
+	return data, err
 }
