@@ -69,15 +69,14 @@ const (
 	BOTTOM Align = 2
 )
 
-// also wants to be an enum when older
-type TextSize int
-
+// text sizes
 const (
-	TITLE    TextSize = 128
-	SUBTITLE TextSize = 64
-	HEADER   TextSize = 32
-	TEXT     TextSize = 16
-	SUBTEXT  TextSize = 14
+	TITLE     int = 128
+	SUBTITLE  int = 64
+	HEADER    int = 32
+	SUBHEADER int = 24
+	TEXT      int = 16
+	SUBTEXT   int = 14
 )
 
 func UInt32ToColor(ui uint32) (color sdl.Color) {
@@ -626,12 +625,19 @@ func (rwh *RunWindowHandler) Init(c *Container, e *bool) {
 
 	program, err := rwh.getProgramInfoCont("/usr/share/applications/nvim.desktop")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	rwh.cont.AddItem("program", program)
 	rwh.cont.MoveItemToFraction("program", FractionVector{0, 0.1})
 
+	program2, err := rwh.getProgramInfoCont("/usr/share/applications/termite.desktop")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	rwh.cont.AddItem("program2", program2)
+	rwh.cont.MoveItemToFraction("program2", FractionVector{0, 0.1 + (float32(1) / float32(16))})
 }
 
 func (rwh *RunWindowHandler) Update() {
@@ -673,25 +679,43 @@ func (rwh *RunWindowHandler) getProgramInfoCont(path string) (cont *Container, e
 		icon.FillRect(nil, DEF_BG_COLOR)
 	}
 
+	homepath, err := getHomePath()
+	if err != nil {
+		return cont, err
+	}
+
 	// open the icon file. If anything fails,
 	// use an empty surface instead
-	iconfile, err := os.Open(info["Icon"])
+	// ugly code incoming
+	// TODO find way to get icon path (icons are in subdirectories of dirs below)
+	iconfile, err := os.Open("/usr/share/icons/" + info["Icon"])
 	if err != nil {
-		default_icon()
-	} else {
-		img, _, err := image.Decode(iconfile)
+		iconfile, err := os.Open(homepath + "/.local/share/icons/" + info["Icon"])
 		if err != nil {
 			default_icon()
 		} else {
-			iconsurf, err := ImgTosurface(img)
+			img, _, err := image.Decode(iconfile)
 			if err != nil {
 				default_icon()
 			} else {
-				icon, err = resizeSurface(iconsurf, Vector{iconsize, iconsize})
+				iconsurf, err := ImgTosurface(img)
 				if err != nil {
 					default_icon()
+				} else {
+					icon, err = resizeSurface(iconsurf, Vector{iconsize, iconsize})
+					if err != nil {
+						default_icon()
+					}
 				}
 			}
+		}
+	}
+
+	// if iconfile was initialized, close it again
+	if iconfile != nil {
+		err = iconfile.Close()
+		if err != nil {
+			return cont, err
 		}
 	}
 
@@ -707,7 +731,7 @@ func (rwh *RunWindowHandler) getProgramInfoCont(path string) (cont *Container, e
 		position: Vector{iconsize + 8, 8},
 		size:     Vector{0, 0}, // will be resized later
 		text:     info["Name"],
-		textsize: 16,
+		textsize: HEADER,
 		valign:   TOP,
 		halign:   LEFT,
 		color:    WHITE_COLOR,
@@ -721,14 +745,14 @@ func (rwh *RunWindowHandler) getProgramInfoCont(path string) (cont *Container, e
 		position: Vector{iconsize + 8, (cont.size.y / 2) + 8},
 		size:     Vector{0, 0}, // will be resized later
 		text:     info["Comment"],
-		textsize: 14,
-		valign:   CENTER,
+		textsize: SUBHEADER,
+		valign:   BOTTOM,
 		halign:   LEFT,
 		color:    0xa0a1a7,
 		bgcolor:  DEF_BG_COLOR,
 		bold:     false,
 	})
-	cont.ResizeItemToFraction("description", FractionVector{float32(16) / float32(18), 0.4})
+	cont.ResizeItemToFraction("description", FractionVector{float32(16) / float32(18), 0.2})
 
 	return cont, err
 }
@@ -1034,6 +1058,30 @@ func getDataFilePath() (path string, err error) {
 		if var_regex.MatchString(line) {
 			// return the value of the env variable + our config file location
 			return value_regex.FindString(line)[1:] + "/sway/sidebar/data.csv", err
+		}
+	}
+
+	return "", errors.New("Enviroment variable $HOME not found")
+}
+
+func getHomePath() (path string, err error) {
+	// The value regexp
+	value_regex, err := regexp.Compile("=(.*)")
+	if err != nil {
+		return "", err
+	}
+
+	// the variable regexp
+	var_regex, err := regexp.Compile("HOME=(.*)")
+	if err != nil {
+		return "", err
+	}
+
+	for _, line := range os.Environ() {
+		// if its the entry we search for ($HOME)
+		if var_regex.MatchString(line) {
+			// return the value of the env variable + our config file location
+			return value_regex.FindString(line)[1:], err
 		}
 	}
 
