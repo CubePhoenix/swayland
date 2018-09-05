@@ -27,6 +27,8 @@ systemd
 
 # Other
 python
+python-msgpack
+python-cachecontrol
 python-pip
 clang
 @python-neovim
