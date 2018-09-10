@@ -170,3 +170,19 @@ let g:ale_set_highlights = 0
 let vim_markdown_preview_toggle=2
 let vim_markdown_preview_browser='Firefox'
 let vim_markdown_preview_github=1
+
+" ################## Terminal ######################
+" Open terminal (shell) in vsplit window
+nnoremap <Leader>s :vsplit<Space>|<Space>terminal<Enter>
+" Escape shell using Esc
+tnoremap <Esc> <C-\><C-n>
+
+" Faster switching of split window focus
+tnoremap <Leader>h <C-\><C-N><C-w>h
+tnoremap <Leader>j <C-\><C-N><C-w>j
+tnoremap <Leader>k <C-\><C-N><C-w>k
+tnoremap <Leader>l <C-\><C-N><C-w>l
+tnoremap <Leader>Left <C-\><C-N><C-w>h
+tnoremap <Leader>Down <C-\><C-N><C-w>j
+tnoremap <Leader>Up <C-\><C-N><C-w>k
+tnoremap <Leader>Right <C-\><C-N><C-w>l
