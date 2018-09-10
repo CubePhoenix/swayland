@@ -108,6 +108,7 @@ highlight SignColumn ctermbg=None
 " Indentation guides
 let g:indentLine_char = '|'
 let g:indentLine_color_term = 239
+let g:indentLine_fileType = ['go', 'xml', 'html', 'python', 'c', 'cpp', 'sh']
 
 " Autocompletion
 let g:deoplete#enable_at_startup = 1
@@ -179,9 +180,23 @@ let vim_markdown_preview_browser='Firefox'
 let vim_markdown_preview_github=1
 
 " ################## Terminal ######################
+
+" starts a terminal inside neovim
+function StartTerminal()
+	vsplit | terminal
+	startinsert
+endfunction
+
+" starts a file manager inside a terminal inside vim
+function StartFileManager()
+	split | terminal
+	insert ranger
+	normal $o
+endfunction
+
 " Open terminal (shell) in vsplit window and start insert mode
-nnoremap <Leader>s :vsplit<Space>\|<Space>terminal<Enter>:startinsert<Enter>
-nnoremap <Leader>S :split<Space>\|<Space>terminal<Enter>:startinsert<Enter>ranger<Enter>
+nnoremap <Leader>s :StartTerminal()<Enter>
+nnoremap <Leader>S :StartFileManager()<Enter>
 autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
 autocmd BufLeave * if &buftype == 'terminal' | stopinsert | endif
 
@@ -221,6 +236,12 @@ let g:startify_bookmarks = [
 
 let g:startify_custom_header =
         \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+
+
+let g:startify_commands = [
+    \ {'t': ['Start Terminal', 'StartTerminal()']},
+	\ {'f': ['Start Filemanager', 'StartFileManager()']}
+    \ ]
 
 hi StartifyBracket ctermfg=240
 hi StartifyFile    ctermfg=147
