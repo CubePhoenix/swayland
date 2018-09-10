@@ -22,16 +22,17 @@ Plug 'sebdah/vim-delve' " Integration of delve, a go debugger
 Plug 'Yggdroot/indentLine' " Indentation guidelines
 Plug 'airblade/vim-gitgutter' " Git diff in realtime
 Plug 'JamshedVesuna/vim-markdown-preview' " Markdown preview in browser
+Plug 'mhinz/vim-startify' " Fancy start screen
 call plug#end()
 
 " Initialization
 
-" Auto start NERD tree when opening a directory
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | wincmd p | endif
+"" Auto start NERD tree when opening a directory
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | wincmd p | endif
 
-" Auto start NERD tree if no files are specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | exe 'NERDTree' | endif
+"" Auto start NERD tree if no files are specified
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | exe 'NERDTree' | endif
 
 " Let quit work as expected if after entering :q the only window left open is NERD Tree itself
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -192,3 +193,38 @@ tnoremap <C-Left> <C-\><C-N><C-w>h
 tnoremap <C-Down> <C-\><C-N><C-w>j
 tnoremap <C-Up> <C-\><C-N><C-w>k
 tnoremap <C-Right> <C-\><C-N><C-w>l
+
+" ################# Startify ######################
+" highlight current line
+autocmd User Startified setlocal cursorline
+
+let g:startify_enable_special      = 0
+let g:startify_files_number        = 8
+let g:startify_relative_path       = 1
+let g:startify_change_to_dir       = 1
+let g:startify_update_oldfiles     = 1
+let g:startify_session_autoload    = 1
+let g:startify_session_persistence = 1
+
+let g:startify_skiplist = [
+        \ 'COMMIT_EDITMSG',
+        \ 'bundle/.*/doc',
+        \ '/data/repo/neovim/runtime/doc',
+        \ '/Users/mhi/local/vim/share/vim/vim74/doc',
+        \ ]
+
+let g:startify_bookmarks = [
+        \ '~/go/src/github.com/phoenixdevelops/',
+        \ ]
+
+let g:startify_custom_header =
+        \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+
+hi StartifyBracket ctermfg=240
+hi StartifyFile    ctermfg=147
+hi StartifyFooter  ctermfg=240
+hi StartifyHeader  ctermfg=114
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+hi StartifySpecial ctermfg=240
