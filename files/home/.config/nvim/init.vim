@@ -40,7 +40,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 filetype plugin indent on
 syntax on
 let mapleader = "\<space>"
-set number
 set incsearch
 set nohlsearch
 set smartcase
@@ -49,11 +48,18 @@ set softtabstop=0
 set noexpandtab
 set shiftwidth=4
 set nowrap
+set splitright
+set splitbelow
 let g:deoplete#sources#go#gocode_binary = $HOME.'/go/bin/gocode'
+
+" No line numbers in text files or console
+set number
+autocmd FileType txt setlocal nonumber
+autocmd TermOpen * setlocal nonumber
 
 " Make split windows look more clean
 set fillchars+=vert:\ 
-hi VertSplit ctermfg=LightGray
+hi VertSplit ctermfg=Gray
 
 "#######Preferences########
 " NERDTree
@@ -172,17 +178,17 @@ let vim_markdown_preview_browser='Firefox'
 let vim_markdown_preview_github=1
 
 " ################## Terminal ######################
-" Open terminal (shell) in vsplit window
-nnoremap <Leader>s :vsplit<Space>|<Space>terminal<Enter>
-" Escape shell using Esc
-tnoremap <Esc> <C-\><C-n>
+" Open terminal (shell) in vsplit window and start insert mode
+nnoremap <Leader>s :vsplit<Space>\|<Space>terminal<Enter>:startinsert<Enter>
+autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
+autocmd BufLeave * if &buftype == 'terminal' | stopinsert | endif
 
 " Faster switching of split window focus
-tnoremap <Leader>h <C-\><C-N><C-w>h
-tnoremap <Leader>j <C-\><C-N><C-w>j
-tnoremap <Leader>k <C-\><C-N><C-w>k
-tnoremap <Leader>l <C-\><C-N><C-w>l
-tnoremap <Leader>Left <C-\><C-N><C-w>h
-tnoremap <Leader>Down <C-\><C-N><C-w>j
-tnoremap <Leader>Up <C-\><C-N><C-w>k
-tnoremap <Leader>Right <C-\><C-N><C-w>l
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+tnoremap <C-Left> <C-\><C-N><C-w>h
+tnoremap <C-Down> <C-\><C-N><C-w>j
+tnoremap <C-Up> <C-\><C-N><C-w>k
+tnoremap <C-Right> <C-\><C-N><C-w>l
