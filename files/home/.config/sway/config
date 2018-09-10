@@ -40,17 +40,20 @@ output * bg ~/.config/sway/assets/background.png fill
 #
 # Basics:
 #
-    # start a terminal with ranger running
-    bindsym $mod+Return exec termite --exec=ranger
+    # start a terminal with nvim running
+    bindsym $mod+Return exec termite --exec=nvim
+
+	# start a terminal with ranger running
+	bindsym $mod+Ctrl+Return exec termite --exec=ranger
+	
+    # start normal terminal
+    bindsym $mod+Shift+Return exec $term
 
     # kill focused window
     bindsym $mod+Shift+q kill
 
     # start your launcher
     bindsym $mod+d exec $menu
-
-    # start normal terminal
-    bindsym $mod+Shift+Return exec $term
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -202,6 +205,8 @@ gaps edge_gaps off
 
 # Desktop overview
 
+# TODO replace with fliw
+
 mode "sb-desktop" {
     bindsym 1 workspace 1
     bindsym 2 workspace 2
@@ -222,6 +227,9 @@ mode "sb-power" {
     bindsym e exit
     bindsym s exec poweroff
     bindsym r exec reboot
+
+    bindsym Return mode "default"; kill $(ps aux | grep 'sidebar' | awk '{print $2}')
+    bindsym Escape mode "default"; kill $(ps aux | grep 'sidebar' | awk '{print $2}')
 }
 
 bindsym $mod+Shift+e  exec ~/.config/sway/sidebar/sidebar power; mode "sb-power"

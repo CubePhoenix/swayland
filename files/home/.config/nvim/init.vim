@@ -195,8 +195,6 @@ tnoremap <C-Up> <C-\><C-N><C-w>k
 tnoremap <C-Right> <C-\><C-N><C-w>l
 
 " ################# Startify ######################
-" highlight current line
-autocmd User Startified setlocal cursorline
 
 let g:startify_enable_special      = 0
 let g:startify_files_number        = 8
@@ -215,6 +213,7 @@ let g:startify_skiplist = [
 
 let g:startify_bookmarks = [
         \ '~/go/src/github.com/phoenixdevelops/',
+		\ '~'
         \ ]
 
 let g:startify_custom_header =
