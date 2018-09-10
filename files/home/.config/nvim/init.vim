@@ -181,6 +181,7 @@ let vim_markdown_preview_github=1
 " ################## Terminal ######################
 " Open terminal (shell) in vsplit window and start insert mode
 nnoremap <Leader>s :vsplit<Space>\|<Space>terminal<Enter>:startinsert<Enter>
+nnoremap <Leader>S :split<Space>\|<Space>terminal<Enter>:startinsert<Enter>ranger<Enter>
 autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
 autocmd BufLeave * if &buftype == 'terminal' | stopinsert | endif
 
@@ -195,6 +196,8 @@ tnoremap <C-Up> <C-\><C-N><C-w>k
 tnoremap <C-Right> <C-\><C-N><C-w>l
 
 " ################# Startify ######################
+
+nnoremap <Leader><C-s> :Startify<Enter>
 
 let g:startify_enable_special      = 0
 let g:startify_files_number        = 8
