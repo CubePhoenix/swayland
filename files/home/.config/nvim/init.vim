@@ -21,6 +21,7 @@ Plug 'w0rp/ale' " code linting
 Plug 'sebdah/vim-delve' " Integration of delve, a go debugger
 Plug 'Yggdroot/indentLine' " Indentation guidelines
 Plug 'airblade/vim-gitgutter' " Git diff in realtime
+Plug 'JamshedVesuna/vim-markdown-preview' " Markdown preview in browser
 call plug#end()
 
 " Initialization
@@ -91,6 +92,7 @@ let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
 " Make Tagbar-Highlighting look nicer
 highlight TagbarHighlight ctermfg=yellow
+set clipboard+=unnamedplus " Use the system clipboard
 
 highlight Visual ctermbg=darkgrey cterm=bold
 
@@ -130,10 +132,12 @@ nnoremap <silent><Leader>j <c-w>j
 " ################# Running Programs ##################
 autocmd FileType go nnoremap <buffer> <Leader>r :!go<Space>run<Space>%<Enter>
 autocmd FileType go nnoremap <buffer> <Leader>R :DlvDebug<Enter>
+autocmd FileType go nnoremap <buffer> <Leader><C-r> :DlvTest<Enter>
+
 autocmd FileType python nnoremap <buffer> <Leader>r :!python<Space>%<Enter>
 autocmd FileType tex nnoremap <buffer> <Leader>r :LLPStartPreview<Enter>
 autocmd FileType sh nnoremap <buffer> <Leader>r :!./%<Enter>
-autocmd FileType markdown nnoremap <buffer> <Leader>r :!termite<Space>--exec='pandoc<Space>%<Space>-f<Space>markdown<Space>-t<Space>html<Space>|<Space>w3m<Space>-T<Space>text/html<CR>'
+let vim_markdown_preview_hotkey='<Leader>r'
 
 " ### Go specific
 " Auto-Import dependencies on saving
@@ -161,3 +165,8 @@ highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 
 let g:ale_set_highlights = 0
+
+" ### Markdown specific
+let vim_markdown_preview_toggle=2
+let vim_markdown_preview_browser='Firefox'
+let vim_markdown_preview_github=1
