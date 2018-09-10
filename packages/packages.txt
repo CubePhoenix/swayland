@@ -57,6 +57,7 @@ sdl2_gfx
 ttf-hack
 pulseaudio
 delve
+syncthing
 
 # Screenshots
 base-devel

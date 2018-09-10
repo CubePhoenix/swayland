@@ -23,6 +23,7 @@ Plug 'Yggdroot/indentLine' " Indentation guidelines
 Plug 'airblade/vim-gitgutter' " Git diff in realtime
 Plug 'JamshedVesuna/vim-markdown-preview' " Markdown preview in browser
 Plug 'mhinz/vim-startify' " Fancy start screen
+Plug 'jceb/vim-orgmode' " Orgmode integration for vim
 call plug#end()
 
 " Initialization
