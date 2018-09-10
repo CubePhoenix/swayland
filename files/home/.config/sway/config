@@ -40,8 +40,8 @@ output * bg ~/.config/sway/assets/background.png fill
 #
 # Basics:
 #
-    # start a terminal
-    bindsym $mod+Return exec $term
+    # start a terminal with ranger running
+    bindsym $mod+Return exec termite --exec=ranger
 
     # kill focused window
     bindsym $mod+Shift+q kill
@@ -49,8 +49,8 @@ output * bg ~/.config/sway/assets/background.png fill
     # start your launcher
     bindsym $mod+d exec $menu
 
-    # start file manager
-    bindsym $mod+Shift+f exec termite --exec=ranger
+    # start normal terminal
+    bindsym $mod+Shift+Return exec $term
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
