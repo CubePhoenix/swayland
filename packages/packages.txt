@@ -58,6 +58,8 @@ ttf-hack
 pulseaudio
 delve
 syncthing
+xdotool
+@grip
 
 # Screenshots
 base-devel
