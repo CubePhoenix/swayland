@@ -184,20 +184,29 @@ let vim_markdown_preview_github=1
 
 " starts a terminal inside neovim
 function StartTerminal()
-	vsplit | terminal
-	startinsert
+	call OpenAutoCloseTerminal('bash')
+	normal i
 endfunction
 
 " starts a file manager inside a terminal inside vim
 function StartFileManager()
-	split | terminal
-	insert ranger
-	normal $o
+	call OpenAutoCloseTerminal('ranger')
+	normal i
+endfunction
+
+function OpenAutoCloseTerminal(cmd)
+	call termopen(a:cmd, {'on_exit': 'ExitTerminal'})
+endfunction
+
+function ExitTerminal(job_id, code, event)
+	if a:code == 0
+		close
+	endif
 endfunction
 
 " Open terminal (shell) in vsplit window and start insert mode
-nnoremap <Leader>s :StartTerminal()<Enter>
-nnoremap <Leader>S :StartFileManager()<Enter>
+nnoremap <Leader>s :new<Space>\|<Space>call<Space>StartTerminal()<Enter>
+nnoremap <Leader>S :new<Space>\|<Space>call<Space>StartFileManager()<Enter>
 autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
 autocmd BufLeave * if &buftype == 'terminal' | stopinsert | endif
 
@@ -240,8 +249,8 @@ let g:startify_custom_header =
 
 
 let g:startify_commands = [
-    \ {'t': ['Start Terminal', 'StartTerminal()']},
-	\ {'f': ['Start Filemanager', 'StartFileManager()']}
+    \ {'t': ['Start Terminal', 'new | call StartTerminal()']},
+	\ {'f': ['Start Filemanager', 'new | call StartFileManager()']}
     \ ]
 
 hi StartifyBracket ctermfg=240
@@ -252,3 +261,6 @@ hi StartifyNumber  ctermfg=215
 hi StartifyPath    ctermfg=245
 hi StartifySlash   ctermfg=240
 hi StartifySpecial ctermfg=240
+
+" Exit session to startify screen
+nnoremap <silent> <Leader>q :SClose<Enter>
