@@ -58,6 +58,7 @@ ttf-hack
 pulseaudio
 delve
 syncthing
+syncthing-gtk
 xdotool
 @grip
 

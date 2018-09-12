@@ -264,3 +264,14 @@ hi StartifySpecial ctermfg=240
 
 " Exit session to startify screen
 nnoremap <silent> <Leader>q :SClose<Enter>
+
+" ################ Vim-Orgmode ####################
+
+let g:org_aggressive_conceal = 1
+let g:org_todo_keywords = ['TODO', 'NEXT', 'DONE']
+let g:org_indent = 1
+
+let g:org_todo_keyword_faces = [
+	\ ['TODO', [':foreground red', ':background none', ':weight bold']],
+	\ ['NEXT', [':foreground yellow', ':background none', 'weight bold']],
+	\ ['DONE', [':foreground green', ':background none', 'wheight bold']]]
