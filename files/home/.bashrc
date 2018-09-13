@@ -9,7 +9,6 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 ######## Added by swayland installer
-EDITOR=/usr/bin/nvim
 
 # Alias git command to add ssh-key
 alias git='~/.scripts/addgitkey.sh && git'
