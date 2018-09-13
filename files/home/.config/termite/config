@@ -3,7 +3,7 @@
 #audible_bell = false
 #clickable_url = true
 #dynamic_title = true
-font = Hack 16
+font = Hack 11
 #fullscreen = true
 #geometry = 640x480
 #icon_name = terminal
@@ -53,7 +53,7 @@ cursor_blink = off
 foreground = #d8dee9
 foreground_bold = #d8dee9
 #background = #2e3440
-background = rgba(46, 52, 64, 0.7)
+background = rgba(46, 52, 64, 0.95)
 
 highlight = #4c566a
 
