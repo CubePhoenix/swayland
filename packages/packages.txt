@@ -38,7 +38,6 @@ yaourt
 go
 go-tools
 @gocode
-@go-sdl2
 ninja
 ctags
 &gtk3-nocsd-git
@@ -51,9 +50,6 @@ neovim
 firefox
 &plymouth
 fzf
-sdl2_ttf
-sdl2_image
-sdl2_gfx
 ttf-hack
 pulseaudio
 delve
@@ -68,6 +64,13 @@ qt5-base
 qt5-tools
 qt5-svg
 @flameshot
+
+# Fliw
+sdl2_ttf
+sdl2_image
+sdl2_gfx
+libxml2
+@go-sdl2
 
 # Custom
 @sidebar

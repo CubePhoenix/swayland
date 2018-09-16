@@ -24,6 +24,14 @@ Plug 'airblade/vim-gitgutter' " Git diff in realtime
 Plug 'JamshedVesuna/vim-markdown-preview' " Markdown preview in browser
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'jceb/vim-orgmode' " Orgmode integration for vim
+Plug 'github.com/othree/xml.vim' " XML tools
+Plug 'github.com/vim-scripts/utl.vim' " Universal Text Linking (vim-orgmode dep)
+Plug 'github.com/tpope/vim-repeat' " Better command repeatment (vim-orgmode dep)
+Plug 'github.com/vim-scripts/taglist.vim' " Source code browsing (vim-orgmode dep)
+Plug 'github.com/tpope/vim-speeddating' " Date tools (vim-orgmode dep)
+Plug 'github.com/chrisbra/NrrwRgn' " Narrow Region feature from emacs (vim-orgmode dep)
+Plug 'github.com/mattn/calendar-vim' " Calendar window inside vim (vim-orgmode dep)
+Plug 'github.com/vim-scripts/SyntaxRange' " Syntax highlighting for code regions (vim-orgmode dep)
 call plug#end()
 
 " Initialization
